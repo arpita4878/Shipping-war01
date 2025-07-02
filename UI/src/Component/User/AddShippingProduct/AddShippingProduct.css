@@ -1,0 +1,18 @@
+.about-image-wrapper {
+  overflow: hidden; /* Keep scaling image contained */
+  transition: transform 0.3s ease;
+}
+
+.about-image {
+  transition: transform 0.5s ease;
+  cursor: pointer;
+}
+
+.about-image-wrapper:hover .about-image {
+  transform: scale(1.05);
+}
+
+/* Optional: Add subtle text shadow for better readability */
+.text-light {
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+}

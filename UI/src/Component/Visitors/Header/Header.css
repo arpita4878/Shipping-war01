@@ -1,0 +1,20 @@
+.jumbotron {
+  /* background: 
+    url('/assets/img/header-bg.JPG') no-repeat center center;
+  background-size: cover; */
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.input-group input:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.btn-primary:hover {
+  background-color: #004ba0;
+}
+
+.animate__animated {
+  animation-duration: 1.2s;
+}

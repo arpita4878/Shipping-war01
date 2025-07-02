@@ -1,0 +1,15 @@
+#registration-box {
+  background-image: url('/assests/img/login_bg.jpg'); /* Corrected path: 'assests' ➝ 'assets' */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+#registration-box .card {
+  background-color: rgba(255, 255, 255, 0.15); /* translucent white */
+  backdrop-filter: blur(10px); /* adds glassmorphism effect */
+  -webkit-backdrop-filter: blur(10px); /* for Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff; /* optional: white text for dark background */
+}

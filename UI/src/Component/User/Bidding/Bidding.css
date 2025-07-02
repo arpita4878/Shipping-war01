@@ -1,0 +1,29 @@
+
+
+
+
+/* Category grid layout */
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+/* Individual category item */
+
+
+.main_part:hover {
+  transform: scale(1.05);
+}
+
+.main_part img {
+  border-radius: 8px;
+  margin-bottom: 10px;
+  object-fit: cover;
+}
+
+.main_part b {
+  color: #ffffff;
+  font-size: 16px;
+}

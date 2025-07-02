@@ -1,0 +1,24 @@
+#login-box {
+  background-image: url('/assests/img/login_bg.jpg'); /* correct path */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+/* Apply transparency + blur effect to the form box */
+#login-box .login-card {
+  background-color: rgba(255, 255, 255, 0.1); /* translucent white */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  color: white;
+  width: 100%;
+}

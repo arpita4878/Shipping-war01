@@ -1,0 +1,18 @@
+difference put & post : 
+
+url -> https://www.geeksforgeeks.org/diffrence-between-put-and-post-http-requests/
+
+difference put & patch :
+
+url -> https://www.geeksforgeeks.org/difference-between-put-and-patch-request/
+
+
+api & rest api :
+
+url 
+
+-> https://hevodata.com/learn/web-api-vs-rest-api/#web
+
+-> https://hevodata.com/learn/web-api-vs-rest-api/#Introduction_to_APIs
+
+
