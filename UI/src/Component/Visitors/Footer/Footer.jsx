@@ -10,8 +10,8 @@ function Footer() {
             <div className="row">
               <div className="col-md-6 mb-5">
                 <h3 className="text-primary mb-4 fw-bold">Get In Touch</h3>
-                <p><i className="fa fa-map-marker-alt me-2 text-primary"></i>192, Clerk Colony, INDORE</p>
-                <p><i className="fa fa-phone-alt me-2 text-primary"></i>7999343606</p>
+                <p><i className="fa fa-map-marker-alt me-2 text-primary"></i> Clerk Colony, INDORE</p>
+                <p><i className="fa fa-phone-alt me-2 text-primary"></i>xxxx xxx xxx</p>
                 <p><i className="fa fa-envelope me-2 text-primary"></i>info@example.com</p>
                 <div className="d-flex gap-3 mt-4">
                   <a className="btn btn-outline-primary btn-social " href="#"><i className="fab fa-twitter" ></i></a>
