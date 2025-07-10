@@ -1,52 +1,63 @@
 import './UserHome.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function UserHome() {
+  const [name, setName] = useState('User');
+
   useEffect(() => {
     AOS.init({ duration: 1200, once: true });
+
+    // Get user name from localStorage
+    const storedName = localStorage.getItem('name');
+    if (storedName) {
+      setName(storedName);
+    }
   }, []);
 
   return (
-    <>
-      <div className="container-fluid py-5 bg-dark">
-        <div className="container">
-          <div className="row align-items-center">
-            {/* Image with scale hover & fade-right animation */}
-            {/* <div
-              className="col-lg-5 pb-4 pb-lg-0 position-relative about-image-wrapper"
-              data-aos="fade-right"
-            >
-              <img
-                src="/assests/img/about.jpg"
-                alt="About us"
-                className="img-fluid rounded shadow-lg about-image"
-              />
-              <div className="bg-primary text-dark text-center p-4 mt-3 rounded shadow-sm">
-                <h3 className="m-0 fw-bold">New Innovative Approach</h3>
-              </div>
-            </div> */}
+    <div className="container-fluid py-5 bg-light text-dark">
+      <div className="container">
+        <div className="row align-items-center">
+          {/* Welcome Section */}
+          <div className="col-lg-12 text-center" data-aos="fade-up">
+            <h2 className="text-uppercase text-primary fw-bold mb-3">
+              Welcome, {name}!
+            </h2>
+            <h1 className="mb-4 fw-bold">
+              Your Trusted Partner in <span className="text-primary">Fast & Transparent Shipping</span>
+            </h1>
+            <p className="mb-4 fs-5">
+              We connect you with a network of verified transporters to simplify your freight process with speed, transparency, and full visibility.
+            </p>
+            <p className="mb-4 fs-6 fst-italic">
+              Say goodbye to hidden costs and delays — start managing your shipments smarter today.
+            </p>
 
-            {/* Text with fade-left animation */}
-            <div className="col-lg-12" data-aos="fade-left">
-              <h2 className="text-primary text-uppercase fw-bold mb-3">
-               Welcome to User Home
-              </h2>
-              <h1 className="mb-4 text-light fw-bold">
-                Trusted & Faster <span className="text-primary">Shipping Service</span> Provider
-              </h1>
-              <p className="mb-4 text-light fs-5">
-                Am voluptatum? Laudantium quis totam saepe, repellat velit suscipit aperiam ducimus alias? Voluptatibus voluptatum voluptate placeat a, earum sit corrupti. Voluptatem modi placeat facere ad ullam at, soluta, doloremque ducimus natus magnam laboriosam assumenda.
-              </p>
-              <p className="mb-4 text-light fs-6 fst-italic">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum aliquid necessitatibus corporis sint recusandae nihil soluta?
-              </p>
+            {/* CTA Buttons */}
+            <div className="d-flex justify-content-center gap-3" data-aos="zoom-in">
+            <Link to='/addproduct'>  <button className="btn btn-primary px-4 py-2">
+                Start Booking
+              </button></Link>
+              <button className="btn btn-outline-secondary px-4 py-2" title="Learn about features">
+                Learn More
+              </button>
             </div>
           </div>
+
+          {/* Optional image or illustration */}
+          {/* <div className="col-lg-6 mt-5" data-aos="fade-left">
+            <img
+              src="/assets/img/shipping-illustration.png"
+              alt="Shipping Illustration"
+              className="img-fluid rounded shadow"
+            />
+          </div> */}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

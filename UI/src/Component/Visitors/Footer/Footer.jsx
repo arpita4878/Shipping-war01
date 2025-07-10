@@ -38,17 +38,20 @@ function Footer() {
             <h3 className="text-primary mb-4 fw-bold">Newsletter</h3>
             <p>Subscribe to our newsletter for the latest updates, offers, and news.</p>
             <div className="w-100">
-              <div className="input-group">
+              <div className="input-group flex-column flex-sm-row">
                 <input
                   type="email"
-                  className="form-control bg-light text-dark border-secondary"
+                  className="form-control bg-light text-dark border-secondary mb-2 mb-sm-0"
                   style={{ padding: "18px" }}
                   placeholder="Your Email Address"
                 />
-                <button className="btn btn-primary px-4">Sign Up</button>
+                <button className="btn btn-primary px-4 ms-sm-2 w-45 w-sm-auto">
+                  Sign Up
+                </button>
               </div>
             </div>
           </div>
+
         </div>
       </div>
 
@@ -58,8 +61,8 @@ function Footer() {
           <div className="col-lg-6 text-center text-md-start mb-3 mb-md-0">
             <p className="m-0 small">
               &copy; {new Date().getFullYear()}{" "}
-              <a  className="text-primary text-decoration-none fw-bold">Shipping War</a>. All Rights Reserved. Designed by{" "}
-              <a  className="text-primary text-decoration-none fw-bold">Shipping War</a>
+              <a className="text-primary text-decoration-none fw-bold">Shipping War</a>. All Rights Reserved. Designed by{" "}
+              <a className="text-primary text-decoration-none fw-bold">Shipping War</a>
             </p>
           </div>
           <div className="col-lg-6 text-center text-md-end">

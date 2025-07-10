@@ -1,0 +1,10 @@
+@media (max-width: 575.98px) {
+  .input-group .form-control {
+    font-size: 1rem;
+  }
+
+  .input-group .btn {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+}

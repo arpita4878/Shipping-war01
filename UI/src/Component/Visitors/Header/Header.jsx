@@ -1,18 +1,30 @@
 import './Header.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
   useEffect(() => {
-    AOS.init({ duration: 1200, once: true }); // once: true animates only once
+    AOS.init({ duration: 1200, once: true });
     AOS.refresh();
   }, []);
+
+  const [trackingId, setTrackingId] = useState('');
+  const navigate = useNavigate();
+
+  const handleTrack = () => {
+    if (trackingId.trim() === '') {
+      alert('Please enter a Tracking ID');
+      return;
+    }
+    navigate(`/track/${trackingId.trim()}`);
+  };
 
   return (
     <div
       className="jumbotron jumbotron-fluid bg-dark text-center mb-5 position-relative"
-      style={{ minHeight: '90vh' }} // add height to enable scroll
+      style={{ minHeight: '90vh' }}
     >
       <div className="container py-5">
         <h2 className="text-warning fw-bold" data-aos="fade-right">
@@ -31,21 +43,28 @@ function Header() {
           <div className="input-group shadow-lg">
             <input
               type="text"
-              className="form-control border-0 py-3 px-4"
+              className="form-control border-0 py-3 px-3"
               placeholder="Enter Tracking ID"
               style={{
                 borderTopLeftRadius: '30px',
                 borderBottomLeftRadius: '30px',
+                fontSize: '1rem',
+                minWidth: '0', // important for flexbox shrinking on mobile
               }}
+              value={trackingId}
+              onChange={(e) => setTrackingId(e.target.value)}
             />
             <button
-              className="btn btn-primary px-4"
+              className="btn btn-primary px-3 px-sm-4"
               style={{
                 borderTopRightRadius: '30px',
                 borderBottomRightRadius: '30px',
+                fontSize: '1rem',
+                minWidth: '100px',
               }}
+              onClick={handleTrack}
             >
-              Track & Trace
+              Track &amp; Trace
             </button>
           </div>
         </div>

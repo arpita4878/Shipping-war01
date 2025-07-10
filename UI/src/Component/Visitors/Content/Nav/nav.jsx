@@ -138,7 +138,7 @@ function Nav() {
             <div className="navbar-nav mx-auto text-center">
               <Link
                 to="/user"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               
                 User Home
@@ -146,7 +146,7 @@ function Nav() {
 
               <Link
                 to="/search"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               
                Search
@@ -154,7 +154,7 @@ function Nav() {
 
                <Link
                 to="/availableproduct"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               
                 Products
@@ -163,7 +163,7 @@ function Nav() {
               <div className="nav-item dropdown px-3">
                 <a
                   
-                  className="nav-link dropdown-toggle fw-bold text-dark"
+                  className="nav-link dropdown-toggle fw-bold text-light"
                   data-bs-toggle="dropdown"
                   role="button" >
                     Manage Product                 
@@ -179,7 +179,7 @@ function Nav() {
              <div className="nav-item dropdown px-3">
                 <a
                   
-                  className="nav-link dropdown-toggle fw-bold text-dark"
+                  className="nav-link dropdown-toggle fw-bold text-light"
                   data-bs-toggle="dropdown"
                   role="button" >
                     Settings                 

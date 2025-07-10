@@ -10,6 +10,7 @@
   transition: background-color 0.3s ease, box-shadow 0.3s ease;
   box-shadow: none;
   backdrop-filter: none;
+  
 }
 
 /* Add subtle shadow on scroll (optional, requires JS) */

@@ -1,116 +1,107 @@
 import './CPUser.css';
-
-import {  useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios'
+import axios from 'axios';
 import { __userapiurl } from '../../../API_URL';
 
 function CPAdmin() {
-const navigate = useNavigate()
-const [currentpassword , setCurrentPassword]= useState()
-const [newpassword , setNewPassword]= useState()
-const [confirmnewpassword , setConfirmNewPassword]= useState()
-const [output , setOutput] = useState();
+  const navigate = useNavigate();
+  const [currentpassword, setCurrentPassword] = useState('');
+  const [newpassword, setNewPassword] = useState('');
+  const [confirmnewpassword, setConfirmNewPassword] = useState('');
+  const [output, setOutput] = useState('');
 
-const handlesubmit=()=>{
+ const handlesubmit = () => {
+  const email = localStorage.getItem("email");
 
-const email = localStorage.getItem("email")
-  
-axios.get(__userapiurl+"fetch",{
-params:{"email":email,"password":currentpassword}
-}).then((response)=>{
- console.log(response.data);
-if(newpassword==confirmnewpassword)
-{
-
- var update_details={"condition_obj":{"email":email} , "content_obj":{"password":newpassword}};
- axios.patch(__userapiurl+"update",update_details).then((response)=>{
-        alert(" password change successfully");
-        navigate("/logout")
-      });
-
-}
-else
-{
-  setOutput("New and Confirm new password not matched");
-  setNewPassword("")
-  setConfirmNewPassword("")
-}
- 
-  
-}).catch((error)=>{
-
-  setOutput("Invalid old Password, Please try again")
-  setCurrentPassword("")
-
-})
-
-
-
-
-}
+  axios.get(__userapiurl + "fetch", {
+    params: { email, password: currentpassword }
+  }).then(() => {
+    if (newpassword === confirmnewpassword) {
+      const update_details = {
+        condition_obj: { email },
+        content_obj: { password: newpassword }
+      };
+      axios.patch(__userapiurl + "update", update_details)
+        .then(() => {
+          // Clear local storage or any auth tokens here if needed
+          localStorage.clear();  // logout by clearing localStorage
+          // Redirect to logout or login page
+          navigate("/logout", { replace: true }); // replace to prevent going back
+        });
+    } else {
+      setOutput("New and Confirm new password do not match");
+      setNewPassword("");
+      setConfirmNewPassword("");
+    }
+  }).catch(() => {
+    setOutput("Invalid old password, please try again");
+    setCurrentPassword("");
+  });
+};
 
   return (
-    <>
-      <div className="container-fluid py-5 bg-dark">
-        <div className="container">
-          <div className="row align-items-center">
-            <h1 className="mb-4 text-light fw-bold">
-               {output  }
-              </h1>
+    <div className="container py-5 bg-light min-vh-100 d-flex flex-column justify-content-center">
+      <div className="row justify-content-center w-100">
+        <div className="col-12 col-sm-10 col-md-8 col-lg-6">
 
-               <h2 className="mb-4 text-light fw-bold">
-               Change <span className="text-primary">Password</span> here!!!
-              </h2>
+          {/* Output message */}
+          {output && (
+            <div className="alert alert-danger text-center fw-semibold" role="alert">
+              {output}
+            </div>
+          )}
 
-          </div>
+          <h2 className="mb-4 text-center fw-bold text-primary">
+            Change <span className="text-secondary">Password</span> here!
+          </h2>
 
- <div className="d-flex    bg-dark" style={{ minHeight: '40vh', paddingTop: '20px' }}>
-      <div className="col-10 col-sm-8 col-md-6 col-lg-5">
-           <form> 
-          
-            <div className="form-group mb-4">
-             
+          <form>
+            <div className="mb-3">
               <input
                 type="password"
-                className="form-control p-3"
-                placeholder="Current Password" value={currentpassword}  onChange={(e)=>setCurrentPassword(e.target.value)}/>
-              
-            </div>
-            
-            <div className="form-group mb-4">
-            
-              <input
-                type="password"
-                className="form-control p-3"
-                placeholder=" New Password"value={newpassword} onChange={(e)=>setNewPassword(e.target.value)} />
-              
+                className="form-control form-control-lg rounded-pill border border-secondary"
+                placeholder="Current Password"
+                value={currentpassword}
+                onChange={(e) => setCurrentPassword(e.target.value)}
+                required
+              />
             </div>
 
-            <div className="form-group mb-4">
-            
+            <div className="mb-3">
               <input
                 type="password"
-                className="form-control p-3"
-                placeholder="Conform New Password" value={confirmnewpassword} onChange={(e)=>setConfirmNewPassword(e.target.value)} />
-              
+                className="form-control form-control-lg rounded-pill border border-secondary"
+                placeholder="New Password"
+                value={newpassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                required
+              />
             </div>
-            
+
+            <div className="mb-4">
+              <input
+                type="password"
+                className="form-control form-control-lg rounded-pill border border-secondary"
+                placeholder="Confirm New Password"
+                value={confirmnewpassword}
+                onChange={(e) => setConfirmNewPassword(e.target.value)}
+                required
+              />
+            </div>
+
             <button
-              className="btn btn-primary w-100 py-2"
-              type="button" onClick={handlesubmit}  >
-           
+              type="button"
+              onClick={handlesubmit}
+              className="btn btn-primary w-100 btn-lg fw-bold rounded-pill shadow-sm btn-hover"
+            >
               Change Password
             </button>
-         
           </form>
-        
-</div>
-</div>
-          
+
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

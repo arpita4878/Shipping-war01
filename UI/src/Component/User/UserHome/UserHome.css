@@ -16,3 +16,17 @@
 .text-light {
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
 }
+/* UserHome.css */
+.btn {
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: scale(1.05);
+}
+
+.btn-outline-secondary:hover {
+  background-color: #f0f0f0;
+  color: #000;
+}
+

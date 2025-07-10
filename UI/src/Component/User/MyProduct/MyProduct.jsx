@@ -3,7 +3,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useEffect, useState } from 'react';
 import { __productapiurl, __categoryapiurl, __subcategoryapiurl } from '../../../API_URL';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function MyProduct() {
 
@@ -19,51 +19,34 @@ function MyProduct() {
     auctionprice: ''
   });
 
-
   useEffect(() => {
     axios.get(__categoryapiurl + "fetch").then((response) => {
       setCatList(response.data)
-    }).catch((error) => {
-      console.log(error);
-    })
+    }).catch(console.log)
   }, [])
 
-  //subcat
   useEffect(() => {
     if (formData.catnm) {
       axios.get(__subcategoryapiurl + "fetch", {
         params: { "catnm": formData.catnm }
       }).then((response) => {
         setSubCatList(response.data)
-      }).catch((error) => {
-        console.log(error);
-      })
-    }
-    else
-      setSubCatList([]);//clear sub cat if cat is clear
-
+      }).catch(console.log)
+    } else setSubCatList([])
   }, [formData.catnm])
 
-
-  //fetch product 
   const email = localStorage.getItem('email')
 
   useEffect(() => {
-
     axios.get(__productapiurl + "fetch", {
       params: { "useremail": email }
     }).then((response) => {
-      // console.log(response.data);
-
       setProList(response.data)
-    }).catch((error) => {
-      console.log(error);
-
-    })
-
+    }).catch(console.log)
   })
 
-  //for bid status button
+
+//for bid status button
   const manageBidding = (_id, s) => {
 
     if (s == 'inactive') {
@@ -169,24 +152,19 @@ function MyProduct() {
 
 
 
-
-
-
   return (
     <>
-      <div className="container-fluid py-5 bg-dark">
+      <div className="container-fluid py-5 bg-light">
         <div className="container">
           <div className="row align-items-center">
 
+            <div className="col-lg-12">
 
-            {/* Text with fade-left animation */}
-            <div className="col-lg-12" >
+              <h2 className="text-primary text-uppercase fw-bold mb-4">My Product List &gt;&gt;</h2>
 
-              <h2 className="text-light text-uppercase fw-bold mb-3  ">My Product List &gt;&gt;</h2>
-
-              <div className="table-responsive">
-                <table className="table table-striped table-dark align-middle">
-                  <thead>
+              <div className="table-responsive shadow-sm rounded">
+                <table className="table table-bordered table-hover align-middle bg-white">
+                  <thead className="table-light">
                     <tr>
                       <th scope="col">Id</th>
                       <th scope="col">Image</th>
@@ -196,140 +174,142 @@ function MyProduct() {
                       <th scope="col">Base Amount</th>
                       <th scope="col">Bidding status</th>
                       <th scope="col">Document File</th>
-                      <th scope="col">Bidding Status </th>
+                      <th scope="col">Bidding Status</th>
                       <th scope="col">Edit</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {pList.length == 0 ? (
+                    {pList.length === 0 ? (
                       <tr>
-                        <td colSpan="10" className="text-center">No products found</td>
-                      </tr>) :
-                      (
-                        pList.map((row) => (
-                          <tr >
-                            <td>{row._id}</td>
-                            <td>
-                              <img
-                                src={`/assests/upload/Shipment_image/${row.shipment_imagenm}`}
-                                alt={row.title}
-                                style={{ maxWidth: '100px', maxHeight: '80px', objectFit: 'cover', borderRadius: '6px' }}
+                        <td colSpan="10" className="text-center text-muted">No products found</td>
+                      </tr>
+                    ) : (
+                      pList.map((row) => (
+                        <tr key={row._id}>
+                          <td>{row._id}</td>
+                          <td>
+                            <img
+                              src={`/assests/upload/Shipment_image/${row.shipment_imagenm}`}
+                              alt={row.title}
+                              style={{ maxWidth: '100px', maxHeight: '80px', objectFit: 'cover', borderRadius: '6px' }}
+                            />
+                          </td>
+                          <td>
+                            {editData === row._id ? (
+                              <input
+                                type="text"
+                                value={formData.title}
+                                onChange={(e) => setformData({ ...formData, title: e.target.value })}
+                                className="form-control"
                               />
-                            </td>
-                            <td>
-                              {editData == row._id ? (
-                                <input type="text"
-                                  value={formData.title}
-                                  onChange={(e) => setformData({ ...formData, title: e.target.value })}
-                                  className="form-control"
-                                />
-                              ) : (
-
-                                row.title
-                              )}
-                            </td>
-
-
-                            <td>{editData == row._id ? (
+                            ) : (
+                              row.title
+                            )}
+                          </td>
+                          <td>
+                            {editData === row._id ? (
                               <select
                                 value={formData.catnm}
                                 onChange={(e) => setformData({ ...formData, catnm: e.target.value })}
-                                className="form-control"  >
-
+                                className="form-select"
+                              >
                                 <option value="">Select Category</option>
-                                {
-                                  cList.map((row) => (
-                                    <option value={row.catnm}>{row.catnm}</option>
-                                  ))
-                                }
+                                {cList.map((cat) => (
+                                  <option key={cat.catnm} value={cat.catnm}>{cat.catnm}</option>
+                                ))}
                               </select>
                             ) : (
-
                               row.catnm
-                            )}</td>
-
-
-
-                            <td>{editData == row._id ? (
+                            )}
+                          </td>
+                          <td>
+                            {editData === row._id ? (
                               <select
                                 value={formData.subcatnm}
                                 onChange={(e) => setformData({ ...formData, subcatnm: e.target.value })}
-                                className="form-control"  >
-
+                                className="form-select"
+                              >
                                 <option value="">Select Sub Category</option>
-                                {
-                                  scList.map((row) => (
-                                    <option value={row.subcatnm}>{row.subcatnm}</option>
-                                  ))
-                                }
+                                {scList.map((subcat) => (
+                                  <option key={subcat.subcatnm} value={subcat.subcatnm}>{subcat.subcatnm}</option>
+                                ))}
                               </select>
                             ) : (
-
                               row.subcatnm
-                            )}</td>
-
-
-                            <td>{editData == row._id ? (
-                              <input type="text"
+                            )}
+                          </td>
+                          <td>
+                            {editData === row._id ? (
+                              <input
+                                type="text"
                                 value={formData.baseamount}
                                 onChange={(e) => setformData({ ...formData, baseamount: e.target.value })}
                                 className="form-control"
                               />
                             ) : (
-
                               row.baseamount
-                            )}</td>
-
-
-                            <td>
-                              <Link to={`/viewbids/${row._id}`}  
-                              className='btn btn-sm btn-outline-info'>View Bids/Allotment</Link>
-                              </td>
-
-
-
-                            <td>
-                              {row.description_filenm ? (
-                                <a
-                                  href={`/assests/upload/description_file/${row.description_filenm}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="btn btn-sm btn-outline-light" >
-                                  View Doc
-                                </a>
-                              ) : 'N/A'}
-                            </td>
-
-                            <td> <label className="switch"><input
-                              type="checkbox"
-                              checked={row.bid_status == 1}
-                              onChange={() =>
-                                manageBidding(row._id, row.bid_status == 1 ? 'inactive' : 'active')
-                              } />
+                            )}
+                          </td>
+                          <td>
+                            <Link to={`/viewbids/${row._id}`} className="btn btn-sm btn-outline-primary">
+                              View Bids/Allotment
+                            </Link>
+                          </td>
+                          <td>
+                            {row.description_filenm ? (
+                              <a
+                                href={`/assests/upload/description_file/${row.description_filenm}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="btn btn-sm btn-outline-secondary"
+                              >
+                                View Doc
+                              </a>
+                            ) : (
+                              'N/A'
+                            )}
+                          </td>
+                          <td>
+                            <label className="switch">
+                              <input
+                                type="checkbox"
+                                checked={row.bid_status === 1}
+                                onChange={() =>
+                                  manageBidding(row._id, row.bid_status === 1 ? 'inactive' : 'active')
+                                }
+                              />
                               <span className="slider round"></span>
                             </label>
-                            </td>
-
-                            <td>{editData == row._id ? (
+                          </td>
+                          <td>
+                            {editData === row._id ? (
                               <>
-                                <button className="btn btn-sm btn-success me-1"
-                                  onClick={() => handleSave(row._id)}>Save</button>
-
-                                <button className="btn btn-sm btn-secondary me-1"
-                                  onClick={() => setEditData(null)}>Cancel</button>
+                                <button
+                                  className="btn btn-sm btn-success me-1"
+                                  onClick={() => handleSave(row._id)}
+                                >
+                                  Save
+                                </button>
+                                <button
+                                  className="btn btn-sm btn-secondary me-1"
+                                  onClick={() => setEditData(null)}
+                                >
+                                  Cancel
+                                </button>
                               </>
                             ) : (
-                              <button className='btn btn-sm btn-outline-warning'
-                                onClick={() => handleEdit(row)} disabled={row.bid_status == 0}>
-                                <i className='fa fa-edit'></i>
+                              <button
+                                className="btn btn-sm btn-outline-warning"
+                                onClick={() => handleEdit(row)}
+                                disabled={row.bid_status === 0}
+                              >
+                                <i className="fa fa-edit"></i>
                               </button>
-                            )
-                            }
-                            </td>
-
-                          </tr>
-                        ))
-                      )}
+                            )}
+                          </td>
+                        </tr>
+                      ))
+                    )}
                   </tbody>
                 </table>
               </div>

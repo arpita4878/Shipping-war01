@@ -1,55 +1,40 @@
 import './Search.css';
-import axios from 'axios'
-import { useEffect , useState} from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { __categoryapiurl } from '../../../API_URL';
 import { Link } from 'react-router-dom';
 
 function Search() {
-const [cList, setCatList]= useState()
+  const [cList, setCatList] = useState([]);
 
-useEffect(()=>{
-
-  axios.get(__categoryapiurl+"fetch").then((response)=>{
-    setCatList(response.data)
-  }).catch((error)=>{
-    console.log(error);
-    
-  })
-
-},[])
+  useEffect(() => {
+    axios.get(__categoryapiurl + 'fetch')
+      .then((res) => setCatList(res.data))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-    <>
-      <div className="container-fluid py-5 bg-dark">
-        <div className="container">
-          <div className="row align-items-center">
-           
-
-            {/* Text with fade-left animation */}
-            <div className="col-lg-12" data-aos="fade-left">
-   <h2 className="text-light text-uppercase fw-bold mb-3 ">Category List <span> &gt;&gt; </span>  
-</h2>  
-
-<div className="category-grid">
-  {
-    cList && cList.map((row) => (
-      <div className="main_part" >
-      <a ><Link to={`/searchsc/${row.catnm}`}>  <img src={`/assests/upload/categoryicons/${row.caticonnm}`} height="150px" width="150px" alt={row.catnm} /></Link></a>
-        <br />
-        <b>{row.catnm}</b>
-      </div>
-    ))
-  }
-</div>
-
-
-
-             
-            </div>
-          </div>
+    <div className="search-section bg-light text-dark">
+      <div className="container py-5">
+        <h2 className="section-title">Categories</h2>
+        <div className="category-grid">
+          {cList.map((row) => (
+            <Link
+              to={`/searchsc/${row.catnm}`}
+            
+              className="category-card"
+            >
+              <img
+                src={`/assests/upload/categoryicons/${row.caticonnm}`}
+                alt={row.catnm}
+                className="category-icon"
+              />
+              <div className="category-name">{row.catnm}</div>
+            </Link>
+          ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

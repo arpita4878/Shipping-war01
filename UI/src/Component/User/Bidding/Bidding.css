@@ -1,29 +1,26 @@
-
-
-
-
-/* Category grid layout */
-.category-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+.hover-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+}
+.hover-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  cursor: pointer;
 }
 
-/* Individual category item */
-
-
-.main_part:hover {
-  transform: scale(1.05);
+.btn-hover {
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.btn-hover:hover {
+  background-color: #0056b3 !important; /* Slightly darker blue */
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.5);
 }
 
-.main_part img {
-  border-radius: 8px;
-  margin-bottom: 10px;
-  object-fit: cover;
-}
-
-.main_part b {
-  color: #ffffff;
-  font-size: 16px;
+@media (max-width: 576px) {
+  .card-body {
+    padding: 1rem 1.5rem !important;
+  }
+  .btn {
+    font-size: 1rem !important;
+  }
 }
