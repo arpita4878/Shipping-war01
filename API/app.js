@@ -1,52 +1,39 @@
-import express from 'express';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+import express from 'express'
+import bodyParser from 'body-parser'
+import cors from 'cors'
 import fileUpload from 'express-fileupload';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
 
-// Load environment variables from .env
-dotenv.config();
+const app=express()
 
-const app = express();
+//to link router
+import UserRouter from './routes/user.router.js'
+import CategoryRouter from './routes/category.router.js'
+import SubCategoryRouter  from './routes/subcategory.router.js'
+import ProductRouter  from './routes/product.router.js'
+import BidRouter from './routes/bidding.router.js'
 
-// Routers
-import UserRouter from './routes/user.router.js';
-import CategoryRouter from './routes/category.router.js';
-import SubCategoryRouter from './routes/subcategory.router.js';
-import ProductRouter from './routes/product.router.js';
-import BidRouter from './routes/bidding.router.js';
 
-// Middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+//configuration to fetch req body content : body parser middleware
+//used to fetch req data from methods like : POST , PUT , PATCH , DELETE
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
+
+//configuration to fetch file from req
 app.use(fileUpload());
+
+//configuration to solve cross-origin problem
 app.use(cors({
-  origin: 'https://shipping-war01.vercel.app', // your frontend URL
+  origin: 'https://shipping-war01.vercel.app'
 }));
 
-// Routes
-app.use('/user', UserRouter);
-app.use('/category', CategoryRouter);
-app.use('/subcategory', SubCategoryRouter);
-app.use('/product', ProductRouter);
-app.use('/bid', BidRouter);
 
-const PORT = process.env.PORT || 3001;
-const MONGO_URI = process.env.MONGO_URI;
+//router level middleware to link routers
+app.use("/user",UserRouter);
+app.use("/category",CategoryRouter);
+app.use("/subcategory",SubCategoryRouter);
+app.use("/product",ProductRouter);
+app.use("/bid",BidRouter)
 
-// Connect to MongoDB and then start the server
-mongoose.connect(MONGO_URI, {
-  // options no longer required in newer Mongoose versions but okay to keep
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-  .then(() => {
-    console.log('Successfully connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
-    });
-  })
-  .catch((err) => {
-    console.error('MongoDB connection error:', err);
-  });
+
+app.listen(3001);
+console.log("server invoked at 3001 port");
