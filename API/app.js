@@ -22,7 +22,10 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.use(fileUpload());
 
 //configuration to solve cross-origin problem
-app.use(cors())
+app.use(cors({
+  origin: 'https://shipping-war01.vercel.app'
+}));
+
 
 //router level middleware to link routers
 app.use("/user",UserRouter);
