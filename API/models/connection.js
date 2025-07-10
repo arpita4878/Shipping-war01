@@ -1,4 +1,4 @@
 import mongoose from "mongoose";
-const url="mongodb://127.0.0.1:27017/shipping_War"
-mongoose.connect(url)
+const url="mongodb+srv://arpitaseth192:@rpita1603@cluster0.tuzcz4n.mongodb.net/"
+mongoose.connect(mongoose.connect(process.env.MONGO_URI))
 console.log("successfully added database") 
