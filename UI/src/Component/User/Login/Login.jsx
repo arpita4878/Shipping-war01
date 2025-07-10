@@ -6,7 +6,7 @@ import axios from 'axios';
 //import ReCAPTCHA from "react-google-recaptcha"
 
 function Login() {
-  const recaptchaRef = useRef()
+
   const navigate = useNavigate()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()

@@ -10,112 +10,100 @@ function Testimonial() {
 
   return (
     <>
-      <div className="container-fluid py-5">
+      <div className="container-fluid py-5 bg-light">
         <div className="container">
           <div className="text-center pb-4" data-aos="fade-down">
-            <h4 className="text-primary text-uppercase font-weight-bold">
-              Testimonial
-            </h4>
-            <h1 className="mb-4 text-light">Our Clients Say</h1>
+            <h5 className="text-primary text-uppercase fw-bold">Testimonials</h5>
+            <h2 className="text-dark">What Our Clients Say</h2>
           </div>
-          <div className="testimonial-carousel d-flex  justify-content-center flex-wrap">
-           
-           
-           
 
+          <div className="row justify-content-center">
+            {/* Testimonial 1 */}
             <div
-              className="position-relative p-4 rounded shadow testimonial-card"
-              data-aos="fade-up"
-              data-aos-delay="200"
-              style={{ maxWidth: "350px", backgroundColor: "#444", color: "#eee", marginBottom: "30px" }}
-            >
-              <i
-                className="fa fa-3x fa-quote-right text-primary position-absolute"
-                style={{ top: "-12px", right: "15px", opacity: 0.2 }}
-              ></i>
-              <div className="d-flex align-items-center mb-3">
-                <img
-                  className="img-fluid rounded-circle"
-                  src="/assests/img/vinay_bhaiya.jpg"
-                  alt="Client 2"
-                  style={{ width: "60px", height: "60px" }}
-                />
-                <div className="ml-3">
-                  <h6 className="font-weight-semi-bold m-0" style={{ color: "#eee" }}>
-                   Vinay Rajput
-                  </h6>
-                  <small style={{ color: "#ccc" }}>- Senior Manager</small>
-                </div>
-              </div>
-              <p className="m-0" style={{ color: "#eee" }}>
-                Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr clita lorem. Dolor ipsum sanct clita.
-              </p>
-            </div>
-           
-           
-           
-            <div
-              className="position-relative  p-4 rounded shadow testimonial-card"
+              className="col-md-6 col-lg-4 mb-4"
               data-aos="fade-up"
               data-aos-delay="100"
-              style={{ maxWidth: "350px", backgroundColor: "#444", color: "#eee", marginBottom: "30px" }}
             >
-              <i
-                className="fa fa-3x fa-quote-right text-primary position-absolute"
-                style={{ top: "-12px", right: "15px", opacity: 0.2 }}
-              ></i>
-              <div className="d-flex align-items-center mb-3">
-                <img
-                  className="img-fluid rounded-circle"
-                  src="/assests/img/gurjeet.jpg"
-                  alt="Client 1"
-                  style={{ width: "60px", height: "60px" }}
-                />
-                <div className="ml-3">
-                  <h6 className="font-weight-semi-bold m-0" style={{ color: "#eee" }}>
-                   Gurjeet Singh 
-                  </h6>
-                  <small style={{ color: "#ccc" }}>- Businessman</small>
+              <div className="bg-white p-4 rounded shadow-sm h-100">
+                <i
+                  className="fa fa-quote-right text-primary fa-2x float-end"
+                  style={{ opacity: 0.2 }}
+                ></i>
+                <div className="d-flex align-items-center mb-3">
+                  <img
+                    src="/assests/img/gurjeet.jpg"
+                    alt="Client 1"
+                    className="img-fluid rounded-circle me-3"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                  <div>
+                    <h6 className="mb-0 fw-bold">Gurjeet Singh</h6>
+                    <small className="text-muted">Businessman</small>
+                  </div>
                 </div>
+                <p className="mb-0 text-secondary">
+                  Reliable, transparent, and fast. The bidding system saved us time and money. Highly recommend their platform.
+                </p>
               </div>
-              <p className="m-0" style={{ color: "#eee" }}>
-                Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr clita lorem. Dolor ipsum sanct clita.
-              </p>
             </div>
 
-
-          
+            {/* Testimonial 2 */}
             <div
-              className="position-relative p-4 rounded shadow testimonial-card"
+              className="col-md-6 col-lg-4 mb-4"
               data-aos="fade-up"
               data-aos-delay="200"
-              style={{ maxWidth: "350px", backgroundColor: "#444", color: "#eee", marginBottom: "30px" }}
             >
-              <i
-                className="fa fa-3x fa-quote-right text-primary position-absolute"
-                style={{ top: "-12px", right: "15px", opacity: 0.2 }}
-              ></i>
-              <div className="d-flex align-items-center mb-3">
-                <img
-                  className="img-fluid rounded-circle"
-                  src="/assests/img/arpita.jpg"
-                  alt="Client 2"
-                  style={{ width: "60px", height: "60px" }}
-                />
-                <div className="ml-3">
-                  <h6 className="font-weight-semi-bold m-0" style={{ color: "#eee" }}>
-                   Arpita
-                  </h6>
-                  <small style={{ color: "#ccc" }}>-</small>
+              <div className="bg-white p-4 rounded shadow-sm h-100">
+                <i
+                  className="fa fa-quote-right text-primary fa-2x float-end"
+                  style={{ opacity: 0.2 }}
+                ></i>
+                <div className="d-flex align-items-center mb-3">
+                  <img
+                    src="/assests/img/vinay_bhaiya.jpg"
+                    alt="Client 2"
+                    className="img-fluid rounded-circle me-3"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                  <div>
+                    <h6 className="mb-0 fw-bold">Vinay Rajput</h6>
+                    <small className="text-muted">Senior Manager</small>
+                  </div>
                 </div>
+                <p className="mb-0 text-secondary">
+                  We’ve streamlined our logistics through their system. It’s easy to use and gives us access to verified transporters instantly.
+                </p>
               </div>
-              <p className="m-0" style={{ color: "#eee" }}>
-                Sed ea amet kasd elitr stet, stet rebum et ipsum est duo elitr clita lorem. Dolor ipsum sanct clita.
-              </p>
             </div>
 
-            
-
+            {/* Testimonial 3 */}
+            <div
+              className="col-md-6 col-lg-4 mb-4"
+              data-aos="fade-up"
+              data-aos-delay="300"
+            >
+              <div className="bg-white p-4 rounded shadow-sm h-100">
+                <i
+                  className="fa fa-quote-right text-primary fa-2x float-end"
+                  style={{ opacity: 0.2 }}
+                ></i>
+                <div className="d-flex align-items-center mb-3">
+                  <img
+                    src="/assests/img/arpita.jpg"
+                    alt="Client 3"
+                    className="img-fluid rounded-circle me-3"
+                    style={{ width: "60px", height: "60px" }}
+                  />
+                  <div>
+                    <h6 className="mb-0 fw-bold">Arpita</h6>
+                    <small className="text-muted">Client</small>
+                  </div>
+                </div>
+                <p className="mb-0 text-secondary">
+                  The service experience was smooth from booking to delivery. The real-time updates kept us informed at every step.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom'
 //Visitors
 import Home from './Component/Visitors/Home/Home'
 import About from './Component/Visitors/About/About'
-import Services from './Component/Visitors/Content/Services/services'
 import Register from './Component/Visitors/Register/Register'
 import Contact from './Component/Visitors/Contact/Contact'
 import Nav from './Component/Visitors/Content/Nav/nav'
@@ -49,7 +48,6 @@ function App() {
       <Route path='/' element={<Home />}></Route>
       <Route path='/register' element={<Register />}></Route>
       <Route path='/contact' element={<Contact />}></Route>
-      <Route path='/service' element={<Services />}></Route>
       <Route path='/about' element={<About />}></Route>
       <Route path='/search' element={<Search />}></Route>
       <Route path='/addproduct' element={<AddShippingProduct />}></Route>

@@ -236,35 +236,29 @@ function Nav() {
             <div className="navbar-nav mx-auto text-center">
               <Link
                 to="/"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               
                 Home
               </Link>
               <Link
                 to="/about"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }} >
              
                 About
               </Link>
-              <Link
-                to="/service"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
-                style={{ transition: 'all 0.3s' }} >
              
-                Service
-              </Link>
               <Link
                 to="/register"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               
                 Register
               </Link>
 
               {/* Dropdown */}
-              <div className="nav-item dropdown px-3">
+              {/* <div className="nav-item dropdown px-3">
                 <a
                   href="#"
                   className="nav-link dropdown-toggle fw-bold text-dark"
@@ -280,11 +274,11 @@ function Nav() {
                   <Link className="dropdown-item py-2 fw-semibold" to="/testimonial">Testimonial</Link>
                   <Link className="dropdown-item py-2 fw-semibold" to="/quote">Free Quote</Link>
                 </div>
-              </div>
+              </div> */}
 
               <Link
                 to="/contact"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }} >
              
                 Contact
