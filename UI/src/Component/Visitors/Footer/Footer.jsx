@@ -1,89 +1,75 @@
 import './Footer.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 function Footer() {
+  useEffect(() => {
+    AOS.init({ duration: 1000, once: true });
+  }, []);
+
   return (
     <>
-      {/* Footer Start */}
-      <div className="container-fluid bg-dark text-light mt-5 py-5 px-sm-3 px-md-5">
-        <div className="row pt-5">
-          <div className="col-lg-7 col-md-6">
-            <div className="row">
-              <div className="col-md-6 mb-5">
-                <h3 className="text-primary mb-4 fw-bold">Get In Touch</h3>
-                <p><i className="fa fa-map-marker-alt me-2 text-primary"></i> Clerk Colony, INDORE</p>
-                <p><i className="fa fa-phone-alt me-2 text-primary"></i> xxxx xxx xxx</p>
-                <p><i className="fa fa-envelope me-2 text-primary"></i> info@example.com</p>
-                <div className="d-flex gap-3 mt-4">
-                  <a className="btn btn-outline-light btn-social" ><i className="fab fa-twitter"></i></a>
-                  <a className="btn btn-outline-light btn-social" ><i className="fab fa-facebook-f"></i></a>
-                  <a className="btn btn-outline-light btn-social" ><i className="fab fa-linkedin-in"></i></a>
-                  <a className="btn btn-outline-light btn-social" ><i className="fab fa-instagram"></i></a>
-                </div>
-              </div>
-
-              <div className="col-md-6 mb-5">
-                <h3 className="text-primary mb-4 fw-bold">Quick Links</h3>
-                <div className="d-flex flex-column gap-2">
-                  <a className="text-light text-decoration-none link-hover" ><i className="fa fa-angle-right me-2"></i>Home</a>
-                  <a className="text-light text-decoration-none link-hover" ><i className="fa fa-angle-right me-2"></i>About Us</a>
-                  <a className="text-light text-decoration-none link-hover" ><i className="fa fa-angle-right me-2"></i>Our Services</a>
-                  <a className="text-light text-decoration-none link-hover" ><i className="fa fa-angle-right me-2"></i>Register</a>
-                  <a className="text-light text-decoration-none link-hover" ><i className="fa fa-angle-right me-2"></i>Contact Us</a>
-                </div>
-              </div>
+      <footer className="footer bg-dark text-light pt-5 px-3 px-md-5">
+        <div className="row g-4">
+          {/* Get In Touch */}
+          <div className="col-lg-4 col-md-6" data-aos="fade-up">
+            <h5 className="text-primary fw-bold mb-4">Get In Touch</h5>
+            <p><i className="fa fa-map-marker-alt me-2 text-primary"></i> Clerk Colony, INDORE</p>
+            <p><i className="fa fa-phone-alt me-2 text-primary"></i> xxxx xxx xxx</p>
+            <p><i className="fa fa-envelope me-2 text-primary"></i> info@example.com</p>
+            <div className="d-flex gap-2 mt-3">
+              <a className="btn btn-outline-light btn-sm rounded-circle" href="#"><i className="fab fa-twitter"></i></a>
+              <a className="btn btn-outline-light btn-sm rounded-circle" href="#"><i className="fab fa-facebook-f"></i></a>
+              <a className="btn btn-outline-light btn-sm rounded-circle" href="#"><i className="fab fa-linkedin-in"></i></a>
+              <a className="btn btn-outline-light btn-sm rounded-circle" href="#"><i className="fab fa-instagram"></i></a>
             </div>
           </div>
 
-          <div className="col-lg-5 col-md-6 mb-5">
-            <h3 className="text-primary mb-4 fw-bold">Newsletter</h3>
-            <p>Subscribe to our newsletter for the latest updates, offers, and news.</p>
-            <div className="w-100">
-              <div className="input-group flex-column flex-sm-row">
-                <input
-                  type="email"
-                  className="form-control bg-light text-dark border-secondary mb-2 mb-sm-0"
-                  style={{ padding: "18px" }}
-                  placeholder="Your Email Address"
-                />
-                <button className="btn btn-primary px-4 ms-sm-2 w-45 w-sm-auto">
-                  Sign Up
-                </button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Bottom Footer */}
-      <div className="container-fluid bg-black text-light border-top py-4 px-sm-3 px-md-5" style={{ borderColor: "#3E3E4E" }}>
-        <div className="row align-items-center">
-          <div className="col-lg-6 text-center text-md-start mb-3 mb-md-0">
-            <p className="m-0 small">
-              &copy; {new Date().getFullYear()}{" "}
-              <a className="text-primary text-decoration-none fw-bold">Shipping War</a>. All Rights Reserved. Designed by{" "}
-              <a className="text-primary text-decoration-none fw-bold">Shipping War</a>
-            </p>
-          </div>
-          <div className="col-lg-6 text-center text-md-end">
-            <ul className="nav justify-content-center justify-content-md-end gap-3">
-              <li className="nav-item">
-                <a className="nav-link text-light small px-2 link-hover" >Privacy</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-light small px-2 link-hover" >Terms</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-light small px-2 link-hover" >FAQs</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-light small px-2 link-hover" >Help</a>
-              </li>
+          {/* Quick Links */}
+          <div className="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <h5 className="text-primary fw-bold mb-4">Quick Links</h5>
+            <ul className="list-unstyled">
+              <li><a className="text-light text-decoration-none d-block mb-2" href="#"><i className="fa fa-angle-right me-2"></i>Home</a></li>
+              <li><a className="text-light text-decoration-none d-block mb-2" href="#"><i className="fa fa-angle-right me-2"></i>About Us</a></li>
+              <li><a className="text-light text-decoration-none d-block mb-2" href="#"><i className="fa fa-angle-right me-2"></i>Services</a></li>
+              <li><a className="text-light text-decoration-none d-block mb-2" href="#"><i className="fa fa-angle-right me-2"></i>Register</a></li>
+              <li><a className="text-light text-decoration-none d-block" href="#"><i className="fa fa-angle-right me-2"></i>Contact Us</a></li>
             </ul>
           </div>
+
+          {/* Newsletter */}
+          <div className="col-lg-5 col-md-12" data-aos="fade-left">
+            <div className="newsletter-card p-4 rounded-4 shadow-lg">
+              <h5 className="text-primary fw-bold mb-3">Newsletter</h5>
+              <p className="text-light">Subscribe for updates, offers & news.</p>
+              <div className="input-group">
+                <input
+                  type="email"
+                  className="form-control bg-transparent text-white border border-light"
+                  placeholder="Your Email"
+                />
+                <button className="btn btn-primary px-4">Sign Up</button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      {/* Footer End */}
+
+        {/* Bottom Footer */}
+        <div className="row mt-5 border-top pt-4 small text-center text-md-start">
+          <div className="col-md-6">
+            <p className="mb-0">
+              &copy; {new Date().getFullYear()} <span className="text-primary fw-bold">Shipping War</span>. All Rights Reserved.
+            </p>
+          </div>
+          <div className="col-md-6 text-md-end mt-2 mt-md-0">
+            <a href="#" className="text-light text-decoration-none me-3">Privacy</a>
+            <a href="#" className="text-light text-decoration-none me-3">Terms</a>
+            <a href="#" className="text-light text-decoration-none me-3">FAQs</a>
+            <a href="#" className="text-light text-decoration-none">Help</a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 }

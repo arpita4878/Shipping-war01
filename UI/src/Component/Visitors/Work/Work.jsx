@@ -10,76 +10,69 @@ function Work() {
 
   return (
     <>
-      <div className="container-fluid py-5 bg-light">
-        <div className="container">
-          <div className="block-heading-1">
-            <center>
-              <h1 className="text-dark" data-aos="fade-down">
-                HOW IT WORKS
-              </h1>
-            </center>
-            <br />
-            {/* <p className="text-dark  ml-5" data-aos="fade-up" data-aos-delay="200">
-                Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.
-              </p> */}
-            <br /><br />
-          </div>
-          <div className="row align-items-center">
-            {/* Image with scale hover & fade-right animation */}
-            <div
-              className="col-lg-4 pb-4 pb-lg-0 position-relative about-image-wrapper"
-              data-aos="fade-right"
-            >
-              <img
-                src="/assests/img/consignment.jpg"
-                alt="About us"
-                className="img-fluid rounded shadow-lg about-image"
-              />
-              <br /><br />
-              <div className="bg-primary text-white text-center p-4 mt-3 rounded shadow-sm">
-                <h4 className="m-0 fw-bold">1. Book Consignment</h4>
-                <p className="mb-0 small">List your shipment details in minutes through our simple online form.</p>
-              </div>
+    <div className="container-fluid py-5 bg-light">
+  <div className="container">
+    <div className="text-center mb-5">
+      <h1 className="text-dark" data-aos="fade-down">HOW IT WORKS</h1>
+    </div>
 
-            </div>
-
-            <div
-              className="col-lg-4 pb-4 pb-lg-0 position-relative about-image-wrapper"
-              data-aos="fade-right"
-            >
-              <img
-                src="/assests/img/Bidding.jpg"
-                alt="About us"
-                className="img-fluid rounded shadow-lg about-image"
-              /> <br /><br />
-              <div className="bg-primary text-white text-center p-4 mt-3 rounded shadow-sm">
-                <h4 className="m-0 fw-bold">2. Start Bidding</h4>
-                <p className="mb-0 small">Verified transporters place bids. Choose the best offer instantly.</p>
-              </div>
-
-            </div>
-
-            <div
-              className="col-lg-4 pb-4 pb-lg-0 position-relative about-image-wrapper"
-              data-aos="fade-right"
-            >
-              <img
-                src="/assests/img/payment.jpg"
-                alt="About us"
-                className="img-fluid rounded shadow-lg about-image"
-              /> <br /><br />
-              <div className="bg-primary text-white text-center p-4 mt-3 rounded shadow-sm">
-                <h4 className="m-0 fw-bold">3. Make Payment</h4>
-                <p className="mb-0 small">Secure your booking with transparent and easy online payment.</p>
-              </div>
-
-            </div>
-
-
+    <div className="row g-4">
+      {/* Step 1 */}
+      <div className="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div className="card h-100 shadow-lg border-0 rounded-4">
+          <img
+            src="/assests/img/consignment.jpg"
+            alt="Book Consignment"
+            className="card-img-top rounded-top-4"
+            style={{ height: 'auto', width: '100%', objectFit: 'cover' }}
+          />
+          <div className="card-body text-center">
+            <h5 className="card-title fw-bold">1. Book Consignment</h5>
+            <p className="card-text small">
+              List your shipment details in minutes through our simple online form.
+            </p>
           </div>
         </div>
-        <br /><br />
       </div>
+
+      {/* Step 2 */}
+      <div className="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+        <div className="card h-100 shadow-lg border-0 rounded-4">
+          <img
+            src="/assests/img/Bidding.jpg"
+            alt="Start Bidding"
+            className="card-img-top rounded-top-4"
+            style={{ height: 'auto', width: '100%', objectFit: 'cover' }}
+          />
+          <div className="card-body text-center">
+            <h5 className="card-title fw-bold">2. Start Bidding</h5>
+            <p className="card-text small">
+              Verified transporters place bids. Choose the best offer instantly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Step 3 */}
+      <div className="col-12 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+        <div className="card h-100 shadow-lg border-0 rounded-4">
+          <img
+            src="/assests/img/payment.jpg"
+            alt="Make Payment"
+            className="card-img-top rounded-top-4"
+            style={{ height: 'auto', width: '100%', objectFit: 'cover' }}
+          />
+          <div className="card-body text-center">
+            <h5 className="card-title fw-bold">3. Make Payment</h5>
+            <p className="card-text small">
+              Secure your booking with transparent and easy online payment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
     </>
   );

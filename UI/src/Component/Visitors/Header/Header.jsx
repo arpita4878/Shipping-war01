@@ -35,39 +35,24 @@ function Header() {
           Choose Your <span className="text-primary">Best Delivery</span>
         </h1>
 
-        <div
-          className="mx-auto"
-          style={{ width: '100%', maxWidth: '500px' }}
-          data-aos="fade-left"
-        >
-          <div className="input-group shadow-lg">
-            <input
-              type="text"
-              className="form-control border-0 py-3 px-3"
-              placeholder="Enter Tracking ID"
-              style={{
-                borderTopLeftRadius: '30px',
-                borderBottomLeftRadius: '30px',
-                fontSize: '1rem',
-                minWidth: '0', // important for flexbox shrinking on mobile
-              }}
-              value={trackingId}
-              onChange={(e) => setTrackingId(e.target.value)}
-            />
-            <button
-              className="btn btn-primary px-3 px-sm-4"
-              style={{
-                borderTopRightRadius: '30px',
-                borderBottomRightRadius: '30px',
-                fontSize: '1rem',
-                minWidth: '100px',
-              }}
-              onClick={handleTrack}
-            >
-              Track &amp; Trace
-            </button>
-          </div>
-        </div>
+       <div className="track-box mx-auto" data-aos="fade-left">
+  <div className="track-card shadow-lg p-3 p-sm-4 rounded-4">
+    <input
+      type="text"
+      className="form-control mb-3 track-input"
+      placeholder="Enter Tracking ID"
+      value={trackingId}
+      onChange={(e) => setTrackingId(e.target.value)}
+    />
+    <button
+      className="btn btn-primary w-100 track-button"
+      onClick={handleTrack}
+    >
+      Track &amp; Trace
+    </button>
+  </div>
+</div>
+
       </div>
     </div>
   );

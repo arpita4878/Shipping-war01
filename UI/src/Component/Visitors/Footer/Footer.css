@@ -1,10 +1,41 @@
-@media (max-width: 575.98px) {
-  .input-group .form-control {
-    font-size: 1rem;
+.footer {
+  background-color: #111;
+  color: #ddd;
+}
+
+.footer a:hover {
+  color: #0d6efd;
+}
+
+.newsletter-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.newsletter-card input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.newsletter-card input:focus {
+  outline: none;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.2);
+}
+
+/* Social Icons */
+.btn-social i {
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 576px) {
+  .newsletter-card {
+    padding: 1.5rem;
   }
 
-  .input-group .btn {
-    font-size: 1rem;
-    padding: 12px 0;
+  .footer .text-md-end {
+    text-align: center !important;
   }
 }
