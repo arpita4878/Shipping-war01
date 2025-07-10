@@ -1,4 +1,15 @@
 import mongoose from "mongoose";
-const url="mongodb+srv://arpitaseth192:@rpita1603@cluster0.tuzcz4n.mongodb.net/"
-mongoose.connect(mongoose.connect(process.env.MONGO_URI))
-console.log("successfully added database") 
+import dotenv from "dotenv";
+
+// Load environment variables from .env
+dotenv.config();
+
+const uri = process.env.MONGO_URI;
+
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log(" Successfully connected to MongoDB"))
+  .catch((err) => console.error(" MongoDB connection error:", err));
