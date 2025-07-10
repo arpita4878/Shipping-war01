@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --exec babel-node",
-    "start": "nodemon app.js"
+      "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
