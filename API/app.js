@@ -1,39 +1,52 @@
-import express from 'express'
-import bodyParser from 'body-parser'
-import cors from 'cors'
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 import fileUpload from 'express-fileupload';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const app=express()
+// Load environment variables from .env
+dotenv.config();
 
-//to link router
-import UserRouter from './routes/user.router.js'
-import CategoryRouter from './routes/category.router.js'
-import SubCategoryRouter  from './routes/subcategory.router.js'
-import ProductRouter  from './routes/product.router.js'
-import BidRouter from './routes/bidding.router.js'
+const app = express();
 
+// Routers
+import UserRouter from './routes/user.router.js';
+import CategoryRouter from './routes/category.router.js';
+import SubCategoryRouter from './routes/subcategory.router.js';
+import ProductRouter from './routes/product.router.js';
+import BidRouter from './routes/bidding.router.js';
 
-//configuration to fetch req body content : body parser middleware
-//used to fetch req data from methods like : POST , PUT , PATCH , DELETE
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:true}))
-
-//configuration to fetch file from req
+// Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
-
-//configuration to solve cross-origin problem
 app.use(cors({
-  origin: 'https://shipping-war01.vercel.app'
+  origin: 'https://shipping-war01.vercel.app', // your frontend URL
 }));
 
+// Routes
+app.use('/user', UserRouter);
+app.use('/category', CategoryRouter);
+app.use('/subcategory', SubCategoryRouter);
+app.use('/product', ProductRouter);
+app.use('/bid', BidRouter);
 
-//router level middleware to link routers
-app.use("/user",UserRouter);
-app.use("/category",CategoryRouter);
-app.use("/subcategory",SubCategoryRouter);
-app.use("/product",ProductRouter);
-app.use("/bid",BidRouter)
+const PORT = process.env.PORT || 3001;
+const MONGO_URI = process.env.MONGO_URI;
 
-
-app.listen(3001);
-console.log("server invoked at 3001 port");
+// Connect to MongoDB and then start the server
+mongoose.connect(MONGO_URI, {
+  // options no longer required in newer Mongoose versions but okay to keep
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+  .then(() => {
+    console.log('Successfully connected to MongoDB');
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`);
+    });
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err);
+  });
