@@ -5,36 +5,28 @@ import jwt from 'jsonwebtoken'
 import rs from 'randomstring'
 
 import UserSchemaModel from "../models/user.model.js";
-import passwordGenerator from './password.controller.js';
+import generatePasswordr from './password.controller.js';
 import emailVerification from './email.controller.js';
 
-export const save = async (req, res) => {
-  try {
-    const users = await UserSchemaModel.find();
-    const _id = users.length === 0 ? 1 : users[users.length - 1]._id + 1;
+export const register=async(req,res)=>{
+     const users=await UserSchemaModel.find();
+   const l=users.length;
+   const _id=l==0?1:users[l-1]._id+1;
 
-    const password = passwordGenerator; // Make sure this returns a string!
+   const password = generatePassword();
 
-    const userDetails = {
-      ...req.body,
-      _id,
-      password,
-      status: 0,
-      role: 'user',
-      info: new Date()
-    };
-
+    const userDetails={...req.body,'_id':_id,'password':password,'role':'user','status':1,'info':Date()};
+    //console.log(userDetail)
+    try{
     await UserSchemaModel.create(userDetails);
-
-    await emailVerification(userDetails.email, password); // await here!
-
-    res.status(201).json({ status: true });
-  } catch (error) {
-    console.log('Error:', error);
-    res.status(500).json({ status: false });
-  }
-};
-
+    emailVerification(userDetails.email,userDetails.password)
+    res.status(201).json({"status":true});
+    }
+    catch (err) {
+  console.error("Error creating user:", err);
+  res.status(500).json({ status: false});
+    }
+}
 //save-post
 
 

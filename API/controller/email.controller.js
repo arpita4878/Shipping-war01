@@ -22,8 +22,7 @@ async function emailVerification(email, password) {
         <p>You have successfully registered to our site. Your login credentials are below:</p>
         <h2>User Email: ${email}</h2>
         <h2>Password: ${password}</h2>
-        <h1>Click the link below to verify your account:</h1>
-        <a href='https://shipping-war01.vercel.app/verify/${email}'>Click here to verify...</a>
+       
       `
     };
 
@@ -35,3 +34,7 @@ async function emailVerification(email, password) {
 }
 
 export default emailVerification;
+
+
+ // <h1>Click the link below to verify your account:</h1>
+        // <a href='https://shipping-war01.vercel.app/verify/${email}'>Click here to verify...</a>
