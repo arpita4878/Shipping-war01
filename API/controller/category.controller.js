@@ -6,7 +6,7 @@ const __dirname = url.fileURLToPath(new URL('.',import.meta.url))
 
 import categorySchemaModel from '../models/category.model.js'
 import fs from 'fs';
-import path from 'path';
+
 
 const uploadDir = path.join(__dirname, '../uploads/categoryicons');
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
