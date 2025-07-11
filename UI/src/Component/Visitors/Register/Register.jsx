@@ -11,7 +11,8 @@ function Register() {
   const [city, setCity] = useState()
   const [address, setAddress] = useState();
   const [gender, setGender] = useState();
-  const [output , setOutput]=useState()
+  const [output , setOutput]=useState();
+  const [password , setPassword]=useState()
   const [error , setError] = useState({});
 
 
@@ -32,6 +33,8 @@ function Register() {
 
     if(!gender)  newError.gender='Gender is required';
 
+     if(!password)  newError.password='Password is required';
+
     setError(newError)
 
     return Object.keys(newError).length==0
@@ -43,7 +46,7 @@ function Register() {
     
     if(!validate()) return;
     
-    const userDetails = { "name":name, "email":email, "mobile":mobile, "address":address,"gender": gender,"city": city };
+    const userDetails = { "name":name, "email":email,"password":password, "mobile":mobile, "address":address,"gender": gender,"city": city };
    // console.log("User Details:", userDetails);
 
     axios.post(__userapiurl+'save',userDetails).then(()=>{
@@ -55,6 +58,7 @@ function Register() {
         setAddress("");
         setCity("");
         setGender("");
+        setPassword("")
         setOutput("User Register Successfully")
     }).catch(()=>{
       setOutput("User Regsitration Failed")
@@ -97,6 +101,17 @@ function Register() {
                   
                   onChange={(e) => setEmail(e.target.value)} />
                {error.email && <small className='text-danger fw-bold'>{error.email}</small>}
+              </div>
+
+                <div className="col-md-6">
+                <label htmlFor="email" className="form-label">Password</label>
+                <input
+                  type="password"
+                  className="form-control"
+                  value={password}
+                  
+                  onChange={(e) => setPassword(e.target.value)} />
+               {error.password && <small className='text-danger fw-bold'>{error.password}</small>}
               </div>
                
             </div>
