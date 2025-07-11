@@ -63,7 +63,7 @@ function SearchProduct() {
                   <tr key={row._id}>
                     <td>
                       <img
-                        src={`/assests/upload/Shipment_image/${row.shipment_imagenm}`}
+                        src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
                         alt={row.title}
                         className="img-thumbnail"
                         style={{ width: '100px', height: '80px', objectFit: 'cover' }}

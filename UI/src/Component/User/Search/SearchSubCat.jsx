@@ -28,7 +28,7 @@ function SearchSubCat() {
               className="category-card"
             >
               <img
-                src={`/assests/upload/subcategoryicons/${row.subcaticonnm}`}
+                src={`https://shipping-war01.onrender.com/upload/subcategoryicons/${row.subcaticonnm}`}
                 alt={row.subcatnm}
                 className="category-icon"
               />

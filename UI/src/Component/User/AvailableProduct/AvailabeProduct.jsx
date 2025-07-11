@@ -101,7 +101,7 @@ function AvailableProduct() {
                   <td data-label="Id">{row._id}</td>
                   <td data-label="Image">
                     <img
-                      src={`/assests/upload/Shipment_image/${row.shipment_imagenm}`}
+                      src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
                       alt={row.title}
                       style={{ maxWidth: '100px', maxHeight: '80px', objectFit: 'cover', borderRadius: '6px' }}
                     />
@@ -129,7 +129,7 @@ function AvailableProduct() {
                   <td data-label="Doc File">
                     {row.bid_status == 1 ? (
                       <Link
-                        to={`/assests/upload/description_file/${row.description_filenm}`}
+                        to={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-secondary"

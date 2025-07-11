@@ -21,14 +21,15 @@ function Search() {
           {cList.map((row) => (
             <Link
               to={`/searchsc/${row.catnm}`}
-            
+
               className="category-card"
             >
               <img
-                src={`/assests/upload/categoryicons/${row.caticonnm}`}
+                src={`https://shipping-war01.onrender.com/uploads/${row.caticonnm}`}
                 alt={row.catnm}
                 className="category-icon"
               />
+
               <div className="category-name">{row.catnm}</div>
             </Link>
           ))}

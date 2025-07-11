@@ -17,13 +17,13 @@ export const save=async(req,res)=>{
    /*If true: Set _id to 1 — this will be the first user.
    If false: Take the _id of the last user (users[l - 1]._id) and add 1 to it.*/
 
- const userDetails={...req.body,'_id':_id,'password':passwordGenerator,'status':0,'role':'user','info':Date()};
+ const userDetails={...req.body,'_id':_id,'password':passwordGenerator,'status':1,'role':'user','info':Date()};
  //console.log(userDetails)
 //  var useremail=req.body.email
  
  try{
     await UserSchemaModel.create(userDetails);
-    emailVerification(userDetails.email,userDetails.password)
+   //  emailVerification(userDetails.email,userDetails.password)
     res.status(201).json({"status":true});
  }
  catch(error){

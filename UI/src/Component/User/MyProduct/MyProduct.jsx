@@ -189,7 +189,7 @@ function MyProduct() {
                           <td>{row._id}</td>
                           <td>
                             <img
-                              src={`/assests/upload/Shipment_image/${row.shipment_imagenm}`}
+                              src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
                               alt={row.title}
                               style={{ maxWidth: '100px', maxHeight: '80px', objectFit: 'cover', borderRadius: '6px' }}
                             />
@@ -258,7 +258,7 @@ function MyProduct() {
                           <td>
                             {row.description_filenm ? (
                               <a
-                                href={`/assests/upload/description_file/${row.description_filenm}`}
+                                href={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="btn btn-sm btn-outline-secondary"
