@@ -1,38 +1,46 @@
-import '../models/connection.js'
-import url from 'url'
-import path from 'path'
+import '../models/connection.js';
+import url from 'url';
+import path from 'path';
+import fs from 'fs';
+import subcategorySchemaModel from '../models/subcategory.model.js';
 
-const __dirname = url.fileURLToPath(new URL('.',import.meta.url))
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-import subcategorySchemaModel from '../models/subcategory.model.js'
+export const save = async (req, res) => {
+  try {
+    const subcategories = await subcategorySchemaModel.find();
+    const l = subcategories.length;
+    const _id = l === 0 ? 1 : subcategories[l - 1]._id + 1;
 
+    // Ensure uploads folder exists
+    const uploadFolder = path.join(__dirname, '../uploads/subcategoryicons');
+    if (!fs.existsSync(uploadFolder)) {
+      fs.mkdirSync(uploadFolder, { recursive: true });
+    }
 
+    // Handle file upload
+    const caticon = req.files.caticon;
+    const subcaticonnm = Date.now() + "-" + caticon.name;
+    const uploadpath = path.join(uploadFolder, subcaticonnm);
 
+    await caticon.mv(uploadpath);
 
-export const save=async(req,res)=>{
-const subcategory=await subcategorySchemaModel.find();
-const l=subcategory.length;
-const _id=l==0?1:subcategory[l-1]._id+1;
+    // Save path in DB (can also store full URL if preferred)
+    const subcategoryDetails = {
+      ...req.body,
+      _id: _id,
+      subcaticonnm: subcaticonnm,
+      imageUrl: `/uploads/subcategoryicons/${subcaticonnm}` // optional: frontend use
+    };
 
-//to get file and to move in specific folder
-const caticon =req.files.caticon;
-const subcaticonnm=Date.now()+"-"+caticon.name;
-const uploadpath=path.join(__dirname,"../../UI/public/assests/upload/subcategoryicons",subcaticonnm);
-caticon.mv(uploadpath);
+    await subcategorySchemaModel.create(subcategoryDetails);
 
-const subcategoryDetails={...req.body,'_id':_id,"subcaticonnm":subcaticonnm};
-// console.log(categoryDetails);
-
-try{
-await subcategorySchemaModel.create(subcategoryDetails)
-res.status(201).json({"status":"ok"})
-}
-catch(error){
-res.status(500).json({"status":"false"})
-console.log(error);
-
-}
-}
+    res.status(201).json({ status: 'ok' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: 'false', error: error.message });
+  }
+};
 
 
 

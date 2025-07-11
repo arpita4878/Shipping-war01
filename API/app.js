@@ -2,8 +2,14 @@ import express from 'express'
 import bodyParser from 'body-parser'
 import cors from 'cors'
 import fileUpload from 'express-fileupload';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 const app=express()
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 //to link router
 import UserRouter from './routes/user.router.js'
@@ -36,6 +42,7 @@ app.use("/category",CategoryRouter);
 app.use("/subcategory",SubCategoryRouter);
 app.use("/product",ProductRouter);
 app.use("/bid",BidRouter)
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const PORT = process.env.PORT || 3001;
 

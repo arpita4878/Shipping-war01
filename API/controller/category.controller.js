@@ -5,6 +5,11 @@ import path from 'path'
 const __dirname = url.fileURLToPath(new URL('.',import.meta.url))
 
 import categorySchemaModel from '../models/category.model.js'
+import fs from 'fs';
+import path from 'path';
+
+const uploadDir = path.join(__dirname, '../uploads/categoryicons');
+if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 
 
@@ -15,13 +20,19 @@ const l=category.length;
 const _id=l==0?1:category[l-1]._id+1;
 
 //to get file and to move in specific folder
-const caticon =req.files.caticon;
-const caticonnm=Date.now()+"-"+caticon.name;
-const uploadpath=path.join(__dirname,"../../UI/public/assests/upload/categoryicons",caticonnm);
+const caticon = req.files.caticon;
+const caticonnm = Date.now() + "-" + caticon.name;
+const uploadpath = path.join(uploadDir, caticonnm);
+
 caticon.mv(uploadpath);
 
-const categoryDetails={...req.body,'_id':_id,"caticonnm":caticonnm};
-// console.log(categoryDetails);
+
+const categoryDetails = {
+  ...req.body,
+  _id: _id,
+  caticonnm: caticonnm,
+  imageUrl: `/uploads/categoryicons/${caticonnm}`
+};// console.log(categoryDetails);
 
 try{
 await categorySchemaModel.create(categoryDetails)

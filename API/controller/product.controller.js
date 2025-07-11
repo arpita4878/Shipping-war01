@@ -1,50 +1,56 @@
-import '../models/connection.js'
-import url from 'url'
-import path from 'path'
+import '../models/connection.js';
+import url from 'url';
+import path from 'path';
+import fs from 'fs';
+import productSchemaModel from '../models/product.model.js';
 
-const __dirname = url.fileURLToPath(new URL('.',import.meta.url))
+const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-import productSchemaModel from '../models/product.model.js'
+export const save = async (req, res) => {
+  try {
+    const productList = await productSchemaModel.find();
+    const _id = productList.length === 0 ? 1 : productList[productList.length - 1]._id + 1;
 
+    // 🔸 Create folders if they don't exist
+    const shipmentDir = path.join(__dirname, '../uploads/Shipment_image');
+    const descriptionDir = path.join(__dirname, '../uploads/description_file');
 
+    if (!fs.existsSync(shipmentDir)) fs.mkdirSync(shipmentDir, { recursive: true });
+    if (!fs.existsSync(descriptionDir)) fs.mkdirSync(descriptionDir, { recursive: true });
 
+    // 🔸 Move image file
+    const shipment_image = req.files.shipment_image;
+    const shipment_imagenm = Date.now() + '-' + shipment_image.name;
+    const shipmentPath = path.join(shipmentDir, shipment_imagenm);
+    await shipment_image.mv(shipmentPath);
 
-export const save=async(req,res)=>{
-const product=await productSchemaModel.find();
-const l=product.length;
-const _id=l==0?1:product[l-1]._id+1;
+    // 🔸 Move description file
+    const description_file = req.files.description_file;
+    const description_filenm = Date.now() + '-' + description_file.name;
+    const descriptionPath = path.join(descriptionDir, description_filenm);
+    await description_file.mv(descriptionPath);
 
-//to get file and to move in specific folder
-const shipment_image =req.files.shipment_image;
-const shipment_imagenm=Date.now()+"-"+shipment_image.name;
-const uploadpath=path.join(__dirname,"../../UI/public/assests/upload/Shipment_image",shipment_imagenm);
-shipment_image.mv(uploadpath);
+    // 🔸 Prepare product object
+    const productDetails = {
+      ...req.body,
+      _id,
+      shipment_imagenm,
+      description_filenm,
+      imageUrl: `/uploads/Shipment_image/${shipment_imagenm}`,
+      fileUrl: `/uploads/description_file/${description_filenm}`,
+      bid_status: 1,
+      info: new Date(),
+      auctionprice: req.body.baseamount
+    };
 
-//to get file and to move in specific folder
-const description_file =req.files.description_file;
-const description_filenm=Date.now()+"-"+description_file.name;
-const uploadpathDes=path.join(__dirname,"../../UI/public/assests/upload/description_file",description_filenm);
-description_file.mv(uploadpathDes);
-
-
-const productDetails={...req.body,'_id':_id,
-"shipment_imagenm":shipment_imagenm,
-'description_filenm':description_filenm,
-"bid_status":1,"info":Date(),
-"auctionprice":req.body.baseamount
+    // 🔸 Save to MongoDB
+    await productSchemaModel.create(productDetails);
+    res.status(201).json({ status: 'ok' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ status: 'false', error: error.message });
+  }
 };
-// console.log(productDetails);
-
-try{
-await productSchemaModel.create(productDetails)
-res.status(201).json({"status":"ok"})
-}
-catch(error){
-res.status(500).json({"status":"false"})
-console.log(error);
-
-}
-}
 
 
 
