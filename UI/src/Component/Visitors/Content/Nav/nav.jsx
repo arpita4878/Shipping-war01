@@ -43,7 +43,7 @@ function Nav() {
               
               <Link
                 to="/admin"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               
                 Admin Home
@@ -51,7 +51,7 @@ function Nav() {
 
               <Link
                 to="/manageuser"
-                className="nav-item nav-link px-3 py-2 fw-bold text-dark transition"
+                className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               Manage User
               </Link>
@@ -59,7 +59,7 @@ function Nav() {
                <div className="nav-item dropdown px-3">
                 <a
                  
-                  className="nav-link dropdown-toggle fw-bold text-dark"
+                  className="nav-link dropdown-toggle fw-bold text-light"
                   data-bs-toggle="dropdown"
                   role="button" >
                     Manage Category                 
@@ -83,7 +83,7 @@ function Nav() {
                <div className="nav-item dropdown px-3">
                 <a
                 
-                  className="nav-link dropdown-toggle fw-bold text-dark"
+                  className="nav-link dropdown-toggle fw-bold text-light"
                   data-bs-toggle="dropdown"
                   role="button" >
                     Settings                 
