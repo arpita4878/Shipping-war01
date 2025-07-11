@@ -37,6 +37,8 @@ app.use("/subcategory",SubCategoryRouter);
 app.use("/product",ProductRouter);
 app.use("/bid",BidRouter)
 
+const PORT = process.env.PORT || 3001;
 
-app.listen(3001);
-console.log("server invoked at 3001 port");
+app.listen(PORT, () => {
+  console.log(`Server invoked at port ${PORT}`);
+});
