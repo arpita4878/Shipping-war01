@@ -141,7 +141,7 @@ function Nav() {
                 className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
                 style={{ transition: 'all 0.3s' }}>
               
-                User Home
+                 Home
               </Link>
 
               <Link
@@ -193,7 +193,7 @@ function Nav() {
 
 
             </div>
-
+        <br/>
             {/* Login Button */}
             <Link
               to="/logout"
@@ -257,25 +257,7 @@ function Nav() {
                 Register
               </Link>
 
-              {/* Dropdown */}
-              {/* <div className="nav-item dropdown px-3">
-                <a
-                  href="#"
-                  className="nav-link dropdown-toggle fw-bold text-dark"
-                  data-bs-toggle="dropdown"
-                  role="button"
-                >
-                  Pages
-                </a>
-                <div className="dropdown-menu border-0 shadow-sm mt-2">
-                  <Link className="dropdown-item py-2 fw-semibold" to="/pricing">Pricing Plan</Link>
-                  <Link className="dropdown-item py-2 fw-semibold" to="/features">Our Features</Link>
-                  <Link className="dropdown-item py-2 fw-semibold" to="/team">Team Members</Link>
-                  <Link className="dropdown-item py-2 fw-semibold" to="/testimonial">Testimonial</Link>
-                  <Link className="dropdown-item py-2 fw-semibold" to="/quote">Free Quote</Link>
-                </div>
-              </div> */}
-
+        
               <Link
                 to="/contact"
                 className="nav-item nav-link px-3 py-2 fw-bold text-light transition"
@@ -284,7 +266,7 @@ function Nav() {
                 Contact
               </Link>
             </div>
-
+  <br/>
             {/* Login Button */}
             <Link
               to="/login"

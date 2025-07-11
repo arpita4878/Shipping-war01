@@ -102,8 +102,7 @@ function Register() {
                   onChange={(e) => setEmail(e.target.value)} />
                {error.email && <small className='text-danger fw-bold'>{error.email}</small>}
               </div>
-
-                <div className="col-md-6">
+     <div className="col-md-12">
                 <label htmlFor="email" className="form-label">Password</label>
                 <input
                   type="password"
@@ -113,11 +112,12 @@ function Register() {
                   onChange={(e) => setPassword(e.target.value)} />
                {error.password && <small className='text-danger fw-bold'>{error.password}</small>}
               </div>
+
+              
                
             </div>
 
-            
-
+         
             <div className="row mb-3">
               <div className="col-md-6">
                 <label htmlFor="mobile" className="form-label">Mobile</label>
