@@ -12,12 +12,20 @@ try{
         pass:'wiaukfpbwdtqgfbe'
     }
 })
-var mailOption={
-    from:'sethaku192@gmail.com',
-    to:email,
-    subject:'Verification Email Shipping War',
-    html:"<h1>Welcome to shipping war</h1><p>You have succesfully resgister to our site, your login  credential are attached  below:</p><h2>useremail:"+email+"</h2><h2>password:"+password+"</h2><h1>Click on the link below to verify your account</h1><a href='http://localhost:5173/verify/"+email+"'>Click here to verify....</a>"
-}
+var mailOption = {
+  from: 'sethaku192@gmail.com',
+  to: email,
+  subject: 'Verification Email Shipping War',
+  html: `
+    <h1>Welcome to Shipping War</h1>
+    <p>You have successfully registered to our site. Your login credentials are below:</p>
+    <h2>User Email: ${email}</h2>
+    <h2>Password: ${password}</h2>
+    <h1>Click the link below to verify your account:</h1>
+    <a href='https://shipping-war01.vercel.app/verify/${email}'>Click here to verify...</a>
+  `
+};
+
 const  info=await transporter.sendMail(mailOption)
     console.log('email sent'+info.response)
 }  
