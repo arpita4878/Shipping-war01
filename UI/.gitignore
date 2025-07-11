@@ -14,7 +14,7 @@ dist
 ...
 
 # Env files
-
+.env
 
 # Editor directories and files
 .vscode/*
