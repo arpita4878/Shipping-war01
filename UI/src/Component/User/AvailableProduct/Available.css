@@ -90,3 +90,84 @@ img {
     color: #495057;
   }
 }
+/* Make table responsive on small screens */
+@media (max-width: 768px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    text-align: left;
+  }
+
+  td::before {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #555;
+  }
+
+  /* Label each td based on data-label attribute */
+  td[data-label="Id"]::before { content: "Id"; }
+  td[data-label="Image"]::before { content: "Image"; }
+  td[data-label="Title"]::before { content: "Title"; }
+  td[data-label="Category"]::before { content: "Category"; }
+  td[data-label="Sub Category"]::before { content: "Sub Category"; }
+  td[data-label="Base Amount"]::before { content: "Base Amount"; }
+  td[data-label="Bidding Time"]::before { content: "Bidding Time"; }
+  td[data-label="Bidding"]::before { content: "Bidding"; }
+  td[data-label="Doc File"]::before { content: "Doc File"; }
+  td[data-label="Bid Status"]::before { content: "Bid Status"; }
+
+  /* Make images smaller */
+  td[data-label="Image"] img {
+    max-width: 70px;
+    max-height: 50px;
+  }
+
+  /* Make buttons full width on mobile */
+  td[data-label="Bidding"] .btn {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  td[data-label="Doc File"] .btn {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

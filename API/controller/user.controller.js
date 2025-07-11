@@ -13,7 +13,7 @@ export const save = async (req, res) => {
     const users = await UserSchemaModel.find();
     const _id = users.length === 0 ? 1 : users[users.length - 1]._id + 1;
 
-    const password = passwordGenerator(); // Make sure this returns a string!
+    const password = passwordGenerator; // Make sure this returns a string!
 
     const userDetails = {
       ...req.body,
