@@ -7,7 +7,6 @@ import About from './Component/Visitors/About/About'
 import Register from './Component/Visitors/Register/Register'
 import Contact from './Component/Visitors/Contact/Contact'
 import Nav from './Component/Visitors/Content/Nav/nav'
-import Footer from './Component/Visitors/Footer/Footer'
 
 import Admin from './Component/Admin/AdminHome/Admin';
 import ManageUser from './Component/Admin/ManageUser/ManageUser'

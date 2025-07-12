@@ -11,7 +11,7 @@ export const save = async (req, res) => {
     const productList = await productSchemaModel.find();
     const _id = productList.length === 0 ? 1 : productList[productList.length - 1]._id + 1;
 
-    // 🔸 Create folders if they don't exist
+    //  Create folders if they don't exist
     const shipmentDir = path.join(__dirname, '../uploads/Shipment_image');
     const descriptionDir = path.join(__dirname, '../uploads/description_file');
 
@@ -24,13 +24,13 @@ export const save = async (req, res) => {
     const shipmentPath = path.join(shipmentDir, shipment_imagenm);
     await shipment_image.mv(shipmentPath);
 
-    // 🔸 Move description file
+    //  Move description file
     const description_file = req.files.description_file;
     const description_filenm = Date.now() + '-' + description_file.name;
     const descriptionPath = path.join(descriptionDir, description_filenm);
     await description_file.mv(descriptionPath);
 
-    // 🔸 Prepare product object
+    //  Prepare product object
     const productDetails = {
       ...req.body,
       _id,
