@@ -113,19 +113,19 @@ function AvailableProduct() {
                         <td data-label="Title">{row.title}</td>
                         <td data-label="Category">{row.catnm}</td>
                         <td data-label="Sub Category">{row.subcatnm}</td>
-                        <td data-label="Base Amount">{row.baseamount}</td>
-                        <td data-label="Bidding Time" className="timer-flash">{getRemainingTime(row)}</td>
-                        <td data-label="Bidding">
+                       <td className="d-none d-sm-table-cell">{row.baseamount}</td>
+  <td className="d-none d-sm-table-cell">{getRemainingTime(row)}</td>
+<td className="d-none d-sm-table-cell responsive-button-cell">
                           {row.bid_status == 1 ? (
-                            <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-outline-primary">
+                            <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-outline-primary  responsive-button">
                               Participate
                             </Link>
                           ) : row.alloted_to ? (
-                            <button className="btn btn-sm btn-success" disabled>
+                            <button className="btn btn-sm btn-success responsive-button" disabled>
                               Allotted
                             </button>
                           ) : (
-                            <button className="btn btn-sm btn-secondary" disabled>
+                            <button className="btn btn-sm btn-secondary responsive-button" disabled>
                               Closed
                             </button>
                           )}
