@@ -116,33 +116,50 @@ function AvailableProduct() {
                   <td>{row.subcatnm}</td>
                   <td>{row.baseamount}</td>
                   <td className="timer-flash">{getRemainingTime(row)}</td>
-                  <td className="text-nowrap">
+
+                  {/* FIXED: Bidding button */}
+                  <td style={{ minWidth: '120px', textAlign: 'center' }}>
                     {row.bid_status == 1 ? (
-                      <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-outline-primary">
+                      <Link
+                        to={`/bidding/${row._id}`}
+                        className="btn btn-sm btn-outline-primary w-100"
+                        style={{ whiteSpace: 'normal' }}
+                      >
                         Participate
                       </Link>
                     ) : row.alloted_to ? (
-                      <button className="btn btn-sm btn-success" disabled>
+                      <button
+                        className="btn btn-sm btn-success w-100"
+                        disabled
+                        style={{ whiteSpace: 'normal' }}
+                      >
                         Allotted
                       </button>
                     ) : (
-                      <button className="btn btn-sm btn-secondary" disabled>
+                      <button
+                        className="btn btn-sm btn-secondary w-100"
+                        disabled
+                        style={{ whiteSpace: 'normal' }}
+                      >
                         Closed
                       </button>
                     )}
                   </td>
+
                   <td className="text-nowrap">
                     {row.bid_status == 1 ? (
                       <a
                         href={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="btn btn-sm btn-outline-secondary"
+                        className="btn btn-sm btn-outline-secondary w-100"
+                        style={{ whiteSpace: 'normal' }}
                       >
                         View Doc
                       </a>
                     ) : 'Not Available'}
                   </td>
+
                   <td>
                     {row.bid_status == 1 ? (
                       <span className="badge bg-success">Active</span>
