@@ -72,101 +72,94 @@ function AvailableProduct() {
   };
 
   return (
-    <div className="container py-5 light-theme">
-      <h2 className="mb-4 text-center text-uppercase fw-bold">Product List &gt;&gt;</h2>
-      <div className="table-responsive">
-        <table className=" table  table-striped table-dark ">
-          <thead style={{ textAlign: "center" }}>
-            <tr>
-              <th scope="col">Image</th>
-              <th scope="col">Title</th>
-              <th scope="col">Category</th>
-              <th scope="col">Sub Category</th>
-              <th scope="col">Base Amount</th>
-              <th scope="col">Bidding Price</th>
-              <th scope="col">Bidding Time</th>
-              <th scope="col">Bidding</th>
-              <th scope="col">Doc File</th>
-              <th scope="col">Bid Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {pList.length === 0 ? (
-              <tr>
-                <td className="text-center">No products found</td>
-              </tr>
-            ) : (
-             pList.map((row) => (
-                <tr>
-                  <td>
-                    <img
-                      src={`/uploads/shipmenticons/${row.piconnm}`}
-                      alt={row.title}
-                      style={{
-                        maxWidth: "100px",
-                        maxHeight: "80px",
-                        objectFit: "cover",
-                        borderRadius: "6px",
-                      }}
-                    />
-                  </td>
-                  <td>{row.title}</td>
-                  <td>{row.catnm}</td>
-                  <td>{row.subcatnm}</td>
-                  <td>{row.baseprice}</td>
-                  <td>{row.auctionprice}</td>
-                  <td className="timer-flash">
-                    {getRemainingTime(row.info)}
-                  </td>
-
-
-                  <td data-label="Bidding">
-                    {row.bid_status == 1 ? (
-                      <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-outline-primary">
-                        Participate
-                      </Link>
-                    ) : row.alloted_to ? (
-                      <button className="btn btn-sm btn-success" disabled>
-                        Allotted
-                      </button>
-                    ) : (
-                      <button className="btn btn-sm btn-secondary" disabled>
-                        Closed
-                      </button>
-                    )}
-                  </td>
-                  <td>
-                    {row.description ? (
-                      <a
-                        href={`/uploads/shipmentdescriptions/${row.description}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-sm btn-outline-light"
-                      >
-                        View Doc
-                      </a>
-                    ) : (
-                      "N/A"
-                    )}
-                  </td>
-                  <td>
-                    <span
-                      style={{ width: "80px", height: "25pxs" }}
-                      className={`badge ${row.bid_status === 1
-                          ? "bg-success"
-                          : "bg-danger"
-                        }`}
-                    >
-                      {row.bid_status === 1 ? "Active" : "Deactive"}
-                    </span>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+    <div class="container-xxl py-5">
+      <div class="container">
+        <div class="row g-5 align-items-center">
+          <div class="col-lg-12"></div>
+          <div className="container py-5 light-theme">
+            <h2 className="mb-4 text-center text-uppercase fw-bold">Product List &gt;&gt;</h2>
+            <div className="table-responsive">
+              <table className="table table-striped table-bordered align-middle">
+                <thead className="table-light">
+                  <tr>
+                    <th>Id</th>
+                    <th>Image</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Sub Category</th>
+                    <th>Base Amount</th>
+                    <th>Bidding Time</th>
+                    <th>Bidding</th>
+                    <th>Doc File</th>
+                    <th>Bid Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pList.length === 0 ? (
+                    <tr>
+                      <td colSpan="10" className="text-center py-4">No products found</td>
+                    </tr>
+                  ) : (
+                    pList.map(row => (
+                      <tr key={row._id}>
+                        <td data-label="Id">{row._id}</td>
+                        <td data-label="Image">
+                          <img
+                            src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
+                            alt={row.title}
+                            style={{ maxWidth: '100px', maxHeight: '80px', objectFit: 'cover', borderRadius: '6px' }}
+                          />
+                        </td>
+                        <td data-label="Title">{row.title}</td>
+                        <td data-label="Category">{row.catnm}</td>
+                        <td data-label="Sub Category">{row.subcatnm}</td>
+                        <td data-label="Base Amount">{row.baseamount}</td>
+                        <td data-label="Bidding Time" className="timer-flash">{getRemainingTime(row)}</td>
+                        <td data-label="Bidding">
+                          {row.bid_status == 1 ? (
+                            <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-outline-primary">
+                              Participate
+                            </Link>
+                          ) : row.alloted_to ? (
+                            <button className="btn btn-sm btn-success" disabled>
+                              Allotted
+                            </button>
+                          ) : (
+                            <button className="btn btn-sm btn-secondary" disabled>
+                              Closed
+                            </button>
+                          )}
+                        </td>
+                        <td data-label="Doc File">
+                          {row.bid_status == 1 ? (
+                            <Link
+                              to={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="btn btn-sm btn-outline-secondary"
+                            >
+                              View Doc
+                            </Link>
+                          ) : 'Not Available'}
+                        </td>
+                        <td data-label="Bid Status">
+                          {row.bid_status == 1 ? (
+                            <span className="badge bg-success">Active</span>
+                          ) : (
+                            <span className="badge bg-secondary">Deactive</span>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+    
   );
 }
 
