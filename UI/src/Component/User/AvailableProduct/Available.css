@@ -1,9 +1,10 @@
-.card-title {
-  font-size: 1.1rem;
-  font-weight: bold;
-}
-
-.card-text {
-  font-size: 0.9rem;
-  margin-bottom: 4px;
+@media (max-width: 768px) {
+  .table td:nth-child(6), /* Base Amount */
+  .table td:nth-child(7), /* Bidding Time */
+  .table td:nth-child(8), /* Bidding */
+  .table td:nth-child(9), /* Doc File */
+  .table td:nth-child(10) /* Bid Status */ {
+    display: block;
+    width: 100%;
+  }
 }

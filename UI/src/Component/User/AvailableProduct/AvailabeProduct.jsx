@@ -74,11 +74,11 @@ function AvailableProduct() {
   return (
     <div className="container py-5 light-theme">
       <h2 className="mb-4 text-center text-uppercase fw-bold">Product List &gt;&gt;</h2>
-      <div className="table-responsive">
+      <div className="table-responsive" style={{ overflowX: 'auto' }}>
         <table className="table table-striped table-bordered align-middle">
           <thead className="table-light">
             <tr>
-              <th>Id</th>
+              <th className="d-none d-sm-table-cell">Id</th>
               <th>Image</th>
               <th>Title</th>
               <th>Category</th>
@@ -98,20 +98,25 @@ function AvailableProduct() {
             ) : (
               pList.map(row => (
                 <tr key={row._id}>
-                  <td data-label="Id">{row._id}</td>
-                  <td data-label="Image">
+                  <td className="d-none d-sm-table-cell">{row._id}</td>
+                  <td>
                     <img
                       src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
                       alt={row.title}
-                      style={{ maxWidth: '100px', maxHeight: '80px', objectFit: 'cover', borderRadius: '6px' }}
+                      style={{
+                        maxWidth: '100px',
+                        maxHeight: '80px',
+                        objectFit: 'cover',
+                        borderRadius: '6px'
+                      }}
                     />
                   </td>
-                  <td data-label="Title">{row.title}</td>
-                  <td data-label="Category">{row.catnm}</td>
-                  <td data-label="Sub Category">{row.subcatnm}</td>
-                  <td data-label="Base Amount">{row.baseamount}</td>
-                  <td data-label="Bidding Time" className="timer-flash">{getRemainingTime(row)}</td>
-                  <td data-label="Bidding">
+                  <td>{row.title}</td>
+                  <td>{row.catnm}</td>
+                  <td>{row.subcatnm}</td>
+                  <td>{row.baseamount}</td>
+                  <td className="timer-flash">{getRemainingTime(row)}</td>
+                  <td className="text-nowrap">
                     {row.bid_status == 1 ? (
                       <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-outline-primary">
                         Participate
@@ -126,19 +131,19 @@ function AvailableProduct() {
                       </button>
                     )}
                   </td>
-                  <td data-label="Doc File">
+                  <td className="text-nowrap">
                     {row.bid_status == 1 ? (
-                      <Link
-                        to={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`}
+                      <a
+                        href={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn btn-sm btn-outline-secondary"
                       >
                         View Doc
-                      </Link>
+                      </a>
                     ) : 'Not Available'}
                   </td>
-                  <td data-label="Bid Status">
+                  <td>
                     {row.bid_status == 1 ? (
                       <span className="badge bg-success">Active</span>
                     ) : (
