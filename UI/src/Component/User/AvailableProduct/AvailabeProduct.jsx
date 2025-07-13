@@ -91,7 +91,7 @@ function AvailableProduct() {
             </tr>
           </thead>
           <tbody>
-            {productList.length === 0 ? (
+            {pList.length === 0 ? (
               <tr>
                 <td className="text-center">No products found</td>
               </tr>
