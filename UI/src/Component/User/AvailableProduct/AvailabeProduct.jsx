@@ -96,7 +96,7 @@ function AvailableProduct() {
                 <td className="text-center">No products found</td>
               </tr>
             ) : (
-              productList.map((row) => (
+             pList.map((row) => (
                 <tr>
                   <td>
                     <img
