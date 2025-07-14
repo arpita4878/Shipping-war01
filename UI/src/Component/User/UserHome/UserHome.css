@@ -1,32 +1,55 @@
-.about-image-wrapper {
-  overflow: hidden; /* Keep scaling image contained */
+.userhome-hero {
+  min-height: 100vh;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  background-size: cover;
+  background-position: center;
+  padding: 60px 15px;
+  background: url('/assets/bg-shipping.jpg') no-repeat center center;
+background-size: cover;
+
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 800px;
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #00c9ff, #92fe9d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.features h3 {
+  font-size: 2rem;
+}
+
+.feature-box {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
   transition: transform 0.3s ease;
 }
 
-.about-image {
-  transition: transform 0.5s ease;
-  cursor: pointer;
+.feature-box:hover {
+  transform: translateY(-6px);
+  background: rgba(255, 255, 255, 0.12);
 }
 
-.about-image-wrapper:hover .about-image {
-  transform: scale(1.05);
-}
+@media (max-width: 576px) {
+  .glass-card {
+    padding: 30px 20px;
+  }
 
-/* Optional: Add subtle text shadow for better readability */
-.text-light {
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
-}
-/* UserHome.css */
-.btn {
-  transition: all 0.3s ease;
-}
+  .userhome-hero h1 {
+    font-size: 1.75rem;
+  }
 
-.btn:hover {
-  transform: scale(1.05);
+  .userhome-hero h2 {
+    font-size: 1.2rem;
+  }
 }
-
-.btn-outline-secondary:hover {
-  background-color: #f0f0f0;
-  color: #000;
-}
-

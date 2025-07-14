@@ -1,18 +1,89 @@
-.about-image-wrapper {
-  overflow: hidden; /* Keep scaling image contained */
-  transition: transform 0.3s ease;
+.admin-nav-container {
+  background: #fff;
+  margin-bottom: 1rem;
+}
+.admin-nav-container .nav-link {
+  color: #333;
+  font-weight: 500;
+  margin: 0 1rem;
+}
+.admin-nav-container .btn-primary {
+  margin-left: auto;
 }
 
-.about-image {
-  transition: transform 0.5s ease;
-  cursor: pointer;
+.admin-dashboard-container {
+  background: #f5f7fa;
+  min-height: 100vh;
+  padding: 2rem;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.about-image-wrapper:hover .about-image {
-  transform: scale(1.05);
+.dashboard-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.dashboard-header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.dashboard-header p {
+  color: #666;
+  font-size: 1.1rem;
 }
 
-/* Optional: Add subtle text shadow for better readability */
-.text-light {
-  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.7);
+.stats-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.stat-card h2 {
+  font-size: 2.2rem;
+  margin: 0;
+  color: #007bff;
+}
+.stat-card p {
+  color: #333;
+  margin-top: 0.5rem;
+}
+
+.manage-section h2 {
+  margin-bottom: 1rem;
+}
+.manage-cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+.manage-card {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  color: inherit;
+}
+.manage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+}
+.manage-card .card-icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
 }

@@ -1,201 +1,212 @@
 import './Register.css';
 import { useState } from 'react';
-import axios from 'axios'
+import axios from 'axios';
 import { __userapiurl } from '../../../API_URL';
+import { Link } from 'react-router-dom';
 
 function Register() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [city, setCity] = useState('');
+  const [address, setAddress] = useState('');
+  const [gender, setGender] = useState('');
+  const [password, setPassword] = useState('');
+  const [output, setOutput] = useState('');
+  const [error, setError] = useState({});
 
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [mobile, setMobile] = useState();
-  const [city, setCity] = useState()
-  const [address, setAddress] = useState();
-  const [gender, setGender] = useState();
-  const [output , setOutput]=useState();
-  const [password , setPassword]=useState()
-  const [error , setError] = useState({});
+  const validate = () => {
+    const newError = {};
 
+    if (!name) newError.name = 'Full name is required';
+    if (!email) newError.email = 'Email is required';
+    else if (!/\S+@\S+\.\S+/.test(email)) newError.email = 'Invalid email address';
 
-  const validate=()=>{
-    const newError={}
+    if (!mobile) newError.mobile = 'Mobile number is required';
+    else if (!/^[0-9]{10}$/.test(mobile)) newError.mobile = 'Mobile must be 10 digits';
 
-    if(!name)  newError.name='Name is required';
+    if (!city) newError.city = 'City is required';
+    if (!address) newError.address = 'Address is required';
+    if (!gender) newError.gender = 'Gender is required';
+    if (!password) newError.password = 'Password is required';
 
-    if(!email)  newError.email='Email is required';
-     else if (!/\S+@\S+\.\S+/.test(email)) newError.email='Invalid email format';
+    setError(newError);
+    return Object.keys(newError).length === 0;
+  };
 
-    if(!mobile)  newError.mobile='Mobile is required';
-   else if (!/^[0-9]{10}$/.test(mobile)) newError.mobile = 'Mobile must be 10 digits only';
+  const handleSubmit = () => {
+    if (!validate()) return;
 
-    if(!city)  newError.city='City is required';
+    const userDetails = { name, email, mobile, city, address, gender, password };
 
-    if(!address)  newError.address='Address is required';
-
-    if(!gender)  newError.gender='Gender is required';
-
-     if(!password)  newError.password='Password is required';
-
-    setError(newError)
-
-    return Object.keys(newError).length==0
-
-  }
-
-
-  const handleSubmit = () => { 
-    
-    if(!validate()) return;
-    
-    const userDetails = { "name":name, "email":email,"password":password, "mobile":mobile, "address":address,"gender": gender,"city": city };
-   // console.log("User Details:", userDetails);
-
-    axios.post(__userapiurl+'save',userDetails).then(()=>{
-
-        // Clear fields
-        setName("");
-        setEmail("");
-        setMobile("");
-        setAddress("");
-        setCity("");
-        setGender("");
-        setPassword("")
-        setOutput("User Register Successfully")
-    }).catch(()=>{
-      setOutput("User Regsitration Failed")
-    })
+    axios.post(__userapiurl + 'save', userDetails)
+      .then(() => {
+        setOutput('✅ Registered successfully!');
+        setName('');
+        setEmail('');
+        setMobile('');
+        setCity('');
+        setAddress('');
+        setGender('');
+        setPassword('');
+        setError({});
+      })
+      .catch(() => setOutput('❌ Registration failed. Try again.'));
   };
 
   return (
-   
-    <div className="container-fluid py-5 bg-dark min-vh-100" id='registration-box'>
-  <div className="container " >
-    <div className="row justify-content-center ">
-      <h1 className="mb-2 text-light fw-bold text-center">
-        Create Profile here!!!
-      </h1>
+    <div className="register-container">
+      <div className="register-card">
+        <h2 className="register-title">Create Your Shipping Profile</h2>
 
-       <h1 className="mb-3 text-light fw-bold text-center">
-        {output}       </h1>
+        {output && (
+          <div className={`alert ${output.includes('success') ? 'alert-success' : 'alert-danger'} output-message`}>
+            {output}
+          </div>
+        )}
 
-      <div className="col-lg-8">
-        <div className="card shadow-lg border-0 p-4 rounded-4 text-dark fw-bold ">
-         
-          <form>
-            <div className="row mb-3 ">
-              <div className="col-md-6">
-                <label htmlFor="name" className="form-label">Full Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)} />
-               {error.name && <small className='text-danger fw-bold'>{error.name}</small>}
-              </div>
-
-              <div className="col-md-6">
-                <label htmlFor="email" className="form-label">Email Address</label>
-                <input
-                  type="email"
-                  className="form-control"
-                  value={email}
-                  
-                  onChange={(e) => setEmail(e.target.value)} />
-               {error.email && <small className='text-danger fw-bold'>{error.email}</small>}
-              </div>
-     <div className="col-md-12">
-                <label htmlFor="email" className="form-label">Password</label>
-                <input
-                  type="password"
-                  className="form-control"
-                  value={password}
-                  
-                  onChange={(e) => setPassword(e.target.value)} />
-               {error.password && <small className='text-danger fw-bold'>{error.password}</small>}
-              </div>
-
-              
-               
+        <form className="register-form" onSubmit={e => e.preventDefault()}>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="name">Full Name</label>
+              <input
+                id="name"
+                type="text"
+                className={`form-control ${error.name ? 'is-invalid' : ''}`}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="John Doe"
+              />
+              {error.name && <div className="invalid-feedback">{error.name}</div>}
             </div>
 
-         
-            <div className="row mb-3">
-              <div className="col-md-6">
-                <label htmlFor="mobile" className="form-label">Mobile</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={mobile}
-                  onChange={(e) => setMobile(e.target.value)} />
-               {error.mobile && <small className='text-danger fw-bold'>{error.mobile}</small>}
-              </div>
-              <div className="col-md-6">
-                <label htmlFor="city" className="form-label">City</label>
-                <select
-                  className="form-select"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)} >
-               
-                  <optgroup label="Madhya Pradesh">
-                    <option>Indore</option>
-                    <option>Bhopal</option>
-                    <option>Ujjain</option>
-                  </optgroup>
-                  <optgroup label="Maharashtra">
-                    <option>Mumbai</option>
-                    <option>Pune</option>
-                    <option>Nasik</option>
-                  </optgroup>
-                </select>
-                {error.city && <small className='text-danger fw-bold'>{error.city}</small>}
-              </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                className={`form-control ${error.email ? 'is-invalid' : ''}`}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="example@mail.com"
+              />
+              {error.email && <div className="invalid-feedback">{error.email}</div>}
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="mobile">Mobile</label>
+              <input
+                id="mobile"
+                type="text"
+                className={`form-control ${error.mobile ? 'is-invalid' : ''}`}
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+                placeholder="1234567890"
+              />
+              {error.mobile && <div className="invalid-feedback">{error.mobile}</div>}
             </div>
 
-            <div className="mb-3">
-              <label htmlFor="address" className="form-label">Address</label>
-              <textarea
-                rows="4"
-                className="form-control"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)} ></textarea>
-             {error.address && <small className='text-danger fw-bold'>{error.address}</small>}
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                id="password"
+                type="password"
+                className={`form-control ${error.password ? 'is-invalid' : ''}`}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="********"
+              />
+              {error.password && <div className="invalid-feedback">{error.password}</div>}
             </div>
-<br />
-            <div className="mb-4">
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="gender"
-                  value="male"
-                  checked={gender == "male"}
-                  onChange={(e) => setGender(e.target.value)} />
-               
-                <label className="form-check-label">Male</label>
-              </div>
-              <div className="form-check form-check-inline">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name="gender"
-                  value="female"
-                  checked={gender == "female"}
-                  onChange={(e) => setGender(e.target.value)} />
-               
-                <label className="form-check-label">Female</label>
-             
-              </div><br />
-                 {error.gender && <small className='text-danger fw-bold'>{error.gender}</small>}
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="city">City</label>
+              <select
+                id="city"
+                className={`form-select ${error.city ? 'is-invalid' : ''}`}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              >
+                <option value="">Select city</option>
+                <optgroup label="Madhya Pradesh">
+                  <option value="Indore">Indore</option>
+                  <option value="Bhopal">Bhopal</option>
+                  <option value="Ujjain">Ujjain</option>
+                </optgroup>
+                <optgroup label="Maharashtra">
+                  <option value="Mumbai">Mumbai</option>
+                  <option value="Pune">Pune</option>
+                  <option value="Nasik">Nasik</option>
+                </optgroup>
+              </select>
+              {error.city && <div className="invalid-feedback">{error.city}</div>}
             </div>
 
-            <button type="button" className="btn btn-warning w-100" onClick={handleSubmit}>
-              Save Profile
-            </button>
-          </form>
-        </div>
+            <div className="form-group gender-group">
+              <label>Gender</label>
+              <div className="gender-options">
+                <div>
+                  <input
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    value="male"
+                    checked={gender === 'male'}
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                  <label htmlFor="male">Male</label>
+                </div>
+
+                <div>
+                  <input
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="female"
+                    checked={gender === 'female'}
+                    onChange={(e) => setGender(e.target.value)}
+                  />
+                  <label htmlFor="female">Female</label>
+                </div>
+              </div>
+              {error.gender && <div className="invalid-feedback d-block">{error.gender}</div>}
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="address">Address</label>
+            <textarea
+              id="address"
+              rows="3"
+              className={`form-control ${error.address ? 'is-invalid' : ''}`}
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder="123 Main Street, City, State"
+            />
+            {error.address && <div className="invalid-feedback">{error.address}</div>}
+          </div>
+
+          <button
+            type="button"
+            className="btn btn-primary w-100 mt-4"
+            onClick={handleSubmit}
+          >
+            Register Now
+          </button>
+
+          <p className="text-center mt-3">
+            Already registered?{' '}
+            <Link to="/login" className="link-login">
+              Login here
+            </Link>
+          </p>
+        </form>
       </div>
     </div>
-  </div>
-</div>
   );
 }
 

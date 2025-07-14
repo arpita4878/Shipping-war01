@@ -1,24 +1,73 @@
-#login-box {
-  background-image: url('/assests/img/login_bg.jpg'); /* correct path */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 50px 0;
+.login-container {
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+  padding: 20px;
 }
 
-/* Apply transparency + blur effect to the form box */
-#login-box .login-card {
-  background-color: rgba(255, 255, 255, 0.1); /* translucent white */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  color: white;
+.login-card {
+  background: #fff;
+  max-width: 450px;
   width: 100%;
+  border-radius: 12px;
+  animation: fadeIn 0.7s ease-in-out;
 }
+
+.password-input input {
+  flex-grow: 1;
+}
+
+.captcha-text {
+  font-size: 22px;
+  font-weight: bold;
+  color: #d9534f;
+  letter-spacing: 6px;
+  font-family: 'Courier New', Courier, monospace;
+  text-decoration: line-through;
+  user-select: none;
+}
+
+button[type="submit"]:hover {
+  background-color: #0069d9;
+  transition: background-color 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.truck-btn {
+  position: relative;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+
+.truck-icon {
+  animation: bounce 1.2s infinite;
+  margin-right: 8px;
+}
+
+.arrow {
+  margin-left: 10px;
+  transition: transform 0.4s ease;
+}
+
+.truck-btn:hover .arrow {
+  transform: translateX(8px);
+}
+
+.loading-truck {
+  display: inline-block;
+  animation: drive 1.5s ease-in-out infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+@keyframes drive {
+  0% { transform: translateX(-7px); }
+  50% { transform: translateX(7px); }
+  100% { transform: translateX(-7px); }
+}
+
+
