@@ -84,15 +84,15 @@ function AvailableProduct() {
             <thead className="table-light">
               <tr>
                 <th>Id</th>
-                <th>Image</th>
+            
                 <th>Title</th>
                 <th>Category</th>
-                <th>Sub Category</th>
-                <th className="d-none d-sm-table-cell">Base Amount</th>
+                
+                <th className=" d-sm-table-cell">Base Amount</th>
                 <th className="d-none d-sm-table-cell">Bidding Time</th>
                 <th className="d-none d-sm-table-cell">Bidding</th>
                 <th>Doc File</th>
-                <th>Bid Status</th>
+               
               </tr>
             </thead>
             <tbody>
@@ -104,7 +104,7 @@ function AvailableProduct() {
                 pList.map(row => (
                   <tr key={row._id}>
                     <td>{row._id}</td>
-                    <td>
+                    {/* <td>
                       <img
                         src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
                         alt={row.title}
@@ -115,10 +115,10 @@ function AvailableProduct() {
                           borderRadius: '6px'
                         }}
                       />
-                    </td>
+                    </td> */}
                     <td>{row.title}</td>
                     <td>{row.catnm}</td>
-                    <td>{row.subcatnm}</td>
+               
                     <td className="d-none d-sm-table-cell">{row.baseamount}</td>
                     <td className="d-none d-sm-table-cell">{getRemainingTime(row)}</td>
                     <td className="d-none d-sm-table-cell responsive-button-cell">
@@ -151,13 +151,13 @@ function AvailableProduct() {
                         </a>
                       ) : 'Not Available'}
                     </td>
-                    <td>
+                    {/* <td>
                       {row.bid_status === 1 ? (
                         <span className="badge bg-success">Active</span>
                       ) : (
                         <span className="badge bg-secondary">Deactive</span>
                       )}
-                    </td>
+                    </td> */}
                   </tr>
                 ))
               )}
