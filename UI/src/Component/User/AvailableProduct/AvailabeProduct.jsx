@@ -79,7 +79,9 @@ function AvailableProduct() {
     <div className="container-xxl py-5">
       <div className="container">
         <h2 className="mb-4 text-center text-uppercase fw-bold">Product List &gt;&gt;</h2>
-        <div className="table-responsive" style={{ overflowX: 'auto' }}>
+
+        {/* Table for medium and large screens */}
+        <div className="table-responsive d-none d-md-block">
           <table className="table table-striped table-bordered align-middle">
             <thead className="table-light">
               <tr>
@@ -121,48 +123,81 @@ function AvailableProduct() {
                     <td>{row.subcatnm}</td>
                     <td>{row.baseamount}</td>
                     <td>{getRemainingTime(row)}</td>
-                    <td className="responsive-button-cell">
+                    <td>
                       {row.bid_status === 1 ? (
-                        <Link
-                          to={`/bidding/${row._id}`}
-                          className="btn btn-sm btn-outline-primary responsive-button"
-                        >
-                          Participate
-                        </Link>
+                        <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-outline-primary">Participate</Link>
                       ) : row.alloted_to ? (
-                        <button className="btn btn-sm btn-success responsive-button" disabled>
-                          Allotted
-                        </button>
+                        <button className="btn btn-sm btn-success" disabled>Allotted</button>
                       ) : (
-                        <button className="btn btn-sm btn-secondary responsive-button" disabled>
-                          Closed
-                        </button>
+                        <button className="btn btn-sm btn-secondary" disabled>Closed</button>
                       )}
                     </td>
                     <td>
                       {row.bid_status === 1 ? (
-                        <a
-                          href={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="btn btn-sm btn-outline-secondary"
-                        >
-                          View Doc
-                        </a>
+                        <a href={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-secondary">View Doc</a>
                       ) : 'Not Available'}
                     </td>
                     <td>
-                      {row.bid_status === 1 ? (
-                        <span className="badge bg-success">Active</span>
-                      ) : (
-                        <span className="badge bg-secondary">Deactive</span>
-                      )}
+                      <span className={`badge ${row.bid_status === 1 ? 'bg-success' : 'bg-secondary'}`}>
+                        {row.bid_status === 1 ? 'Active' : 'Deactive'}
+                      </span>
                     </td>
                   </tr>
                 ))
               )}
             </tbody>
           </table>
+        </div>
+
+        {/* Card view for small screens */}
+        <div className="d-block d-md-none">
+          {pList.length === 0 ? (
+            <div className="text-center py-4">No products found</div>
+          ) : (
+            pList.map(row => (
+              <div key={row._id} className="card mb-3 shadow-sm">
+                <div className="card-body">
+                  <div className="d-flex align-items-start">
+                    <img
+                      src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
+                      alt={row.title}
+                      style={{
+                        width: '100px',
+                        height: '80px',
+                        objectFit: 'cover',
+                        borderRadius: '6px',
+                        marginRight: '15px'
+                      }}
+                    />
+                    <div>
+                      <h5 className="card-title">{row.title}</h5>
+                      <p className="card-text mb-1"><strong>Category:</strong> {row.catnm}</p>
+                      <p className="card-text mb-1"><strong>Sub Category:</strong> {row.subcatnm}</p>
+                      <p className="card-text mb-1"><strong>Base Amount:</strong> {row.baseamount}</p>
+                      <p className="card-text mb-1"><strong>Time Left:</strong> {getRemainingTime(row)}</p>
+                      <div className="mb-2">
+                        {row.bid_status === 1 ? (
+                          <Link to={`/bidding/${row._id}`} className="btn btn-sm btn-primary me-2">Participate</Link>
+                        ) : row.alloted_to ? (
+                          <button className="btn btn-sm btn-success me-2" disabled>Allotted</button>
+                        ) : (
+                          <button className="btn btn-sm btn-secondary me-2" disabled>Closed</button>
+                        )}
+                        {row.bid_status === 1 ? (
+                          <a href={`https://shipping-war01.onrender.com/upload/description_file/${row.description_filenm}`} target="_blank" rel="noopener noreferrer" className="btn btn-sm btn-outline-secondary">
+                            View Doc
+                          </a>
+                        ) : null}
+                      </div>
+                      <span className={`badge ${row.bid_status === 1 ? 'bg-success' : 'bg-secondary'}`}>
+                        {row.bid_status === 1 ? 'Active' : 'Deactive'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </div>

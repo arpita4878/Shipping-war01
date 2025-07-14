@@ -1,17 +1,10 @@
 /* Available.css */
+@media (max-width: 767px) {
+  .card-title {
+    font-size: 1.1rem;
+  }
 
-.responsive-button-cell {
-  min-width: 130px;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.responsive-button {
-  display: inline-block;
-  width: 100%;
-  white-space: normal;
-  word-break: break-word;
-  font-size: 14px;
-  padding: 4px 8px;
-  box-sizing: border-box;
+  .card-text {
+    font-size: 0.9rem;
+  }
 }
