@@ -88,9 +88,9 @@ function AvailableProduct() {
                 <th>Title</th>
                 <th>Category</th>
                 <th>Sub Category</th>
-                <th className="d-none d-sm-table-cell">Base Amount</th>
-                <th className="d-none d-sm-table-cell">Bidding Time</th>
-                <th className="d-none d-sm-table-cell">Bidding</th>
+                <th>Base Amount</th>
+                <th>Bidding Time</th>
+                <th>Bidding</th>
                 <th>Doc File</th>
                 <th>Bid Status</th>
               </tr>
@@ -119,21 +119,24 @@ function AvailableProduct() {
                     <td>{row.title}</td>
                     <td>{row.catnm}</td>
                     <td>{row.subcatnm}</td>
-                    <td className="d-none d-sm-table-cell">{row.baseamount}</td>
-                    <td className="d-none d-sm-table-cell">{getRemainingTime(row)}</td>
-                    <td className="d-none d-sm-table-cell responsive-button-cell">
+                    <td>{row.baseamount}</td>
+                    <td>{getRemainingTime(row)}</td>
+                    <td className="responsive-button-cell">
                       {row.bid_status === 1 ? (
                         <Link
                           to={`/bidding/${row._id}`}
-                         
+                          className="btn btn-sm btn-outline-primary responsive-button"
                         >
                           Participate
                         </Link>
                       ) : row.alloted_to ? (
-                           <span className="badge bg-success"> Allotted</span>          
-                     
+                        <button className="btn btn-sm btn-success responsive-button" disabled>
+                          Allotted
+                        </button>
                       ) : (
-                         <span className="badge bg-success"> Closed</span>
+                        <button className="btn btn-sm btn-secondary responsive-button" disabled>
+                          Closed
+                        </button>
                       )}
                     </td>
                     <td>
