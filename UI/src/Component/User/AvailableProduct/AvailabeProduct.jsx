@@ -84,15 +84,13 @@ function AvailableProduct() {
             <thead className="table-light">
               <tr>
                 <th>Id</th>
-            
+                <th className="d-none d-sm-table-cell">Bidding</th>
                 <th>Title</th>
                 <th>Category</th>
-                
-                <th className=" d-sm-table-cell">Base Amount</th>
-                <th className="d-none d-sm-table-cell">Bidding Time</th>
-                <th className="d-none d-sm-table-cell">Bidding</th>
+                <th>Sub Category</th>
+                <th className="d-none d-sm-table-cell">Bidding Time</th>               
                 <th>Doc File</th>
-               
+             
               </tr>
             </thead>
             <tbody>
@@ -104,24 +102,8 @@ function AvailableProduct() {
                 pList.map(row => (
                   <tr key={row._id}>
                     <td>{row._id}</td>
-                    {/* <td>
-                      <img
-                        src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
-                        alt={row.title}
-                        style={{
-                          maxWidth: '100px',
-                          maxHeight: '80px',
-                          objectFit: 'cover',
-                          borderRadius: '6px'
-                        }}
-                      />
-                    </td> */}
-                    <td>{row.title}</td>
-                    <td>{row.catnm}</td>
-               
-                    <td className="d-none d-sm-table-cell">{row.baseamount}</td>
-                    <td className="d-none d-sm-table-cell">{getRemainingTime(row)}</td>
-                    <td className="d-none d-sm-table-cell responsive-button-cell">
+
+                   <td className="d-none d-sm-table-cell responsive-button-cell">
                       {row.bid_status === 1 ? (
                         <Link
                           to={`/bidding/${row._id}`}
@@ -139,6 +121,25 @@ function AvailableProduct() {
                         </button>
                       )}
                     </td>
+
+                    {/* <td>
+                      <img
+                        src={`https://shipping-war01.onrender.com/upload/Shipment_image/${row.shipment_imagenm}`}
+                        alt={row.title}
+                        style={{
+                          maxWidth: '100px',
+                          maxHeight: '80px',
+                          objectFit: 'cover',
+                          borderRadius: '6px'
+                        }}
+                      />
+                    </td> */}
+                    <td>{row.title}</td>
+                    <td>{row.catnm}</td>
+                    <td>{row.subcatnm}</td>
+                    {/* <td className="d-none d-sm-table-cell">{row.baseamount}</td> */}
+                    <td className="d-none d-sm-table-cell">{getRemainingTime(row)}</td>
+                   
                     <td>
                       {row.bid_status === 1 ? (
                         <a
@@ -151,13 +152,7 @@ function AvailableProduct() {
                         </a>
                       ) : 'Not Available'}
                     </td>
-                    {/* <td>
-                      {row.bid_status === 1 ? (
-                        <span className="badge bg-success">Active</span>
-                      ) : (
-                        <span className="badge bg-secondary">Deactive</span>
-                      )}
-                    </td> */}
+                   
                   </tr>
                 ))
               )}
